@@ -1,28 +1,38 @@
-import { useQuery } from '@tanstack/react-query';
-import QueryKeys from '@utils/queryKeys';
-import axios from 'axios';
-import { useParams } from 'react-router';
-import urls from '@utils/urls';
+import { useState } from "react";
+import GoogleSigninBtn from "@components/sign-in-button";
+import "../styles/page styles/Admin-Login.css";
+import useGoogleSignIn from '@components/login';
+import { bouncy } from "ldrs";
 
-export default function Home() {
-  const { name } = useParams();
+function AdminLogin() {
+    const [isLoading, setLoading] = useState<boolean>(false);
+    const url = window.location.pathname;
+    const handleSignIn = useGoogleSignIn(url, setLoading);
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: [QueryKeys.GetIntro, name],
-    queryFn: async () => {
-      const { data } = await axios(`/hello/${name}`, {
-        method: 'get',
-        baseURL: urls.apiUrl,
-      });
-      return data;
-    },
-  });
+    bouncy.register();
 
-  if (isLoading) {
-    return <div className="loading loading-spinner" />;
-  }
-  if (isError) {
-    return <div>Error: {error.name}</div>;
-  }
-  return <div>{data}</div>;
+    return (
+        <div className="admin-login-outer background-admin-login">
+            <div className="admin-login-left-items">
+                <h2 className="welcome-title-admin-login">Welcome to the</h2>
+                <h1 className="passport-title-admin-login">WDCC Passport</h1>
+                <h2 className="dashboard-title-admin-login">Admin Dashboard</h2>
+                {isLoading ? (
+                    <div className="py-2">
+                        <l-bouncy
+                            size="60"
+                            speed="1.75"
+                            color="#03045e"
+                        ></l-bouncy>
+                    </div>
+                ) : (
+                    <GoogleSigninBtn onClick={handleSignIn} adminLogin={true} />
+                )}
+            </div>
+            <div className="admin-login-right-items">
+            </div>
+        </div>
+    );
 }
+
+export default AdminLogin;

@@ -7,6 +7,7 @@ interface UserData {
     lastName: string;
     email: string;
     accessToken: string;
+    upi: string;
 }
 
 // New user to MongoDB
@@ -43,6 +44,7 @@ const updateUserData = async (data: UserData) => {
                     lastName: data.lastName,
                     email: data.email,
                     accessToken: data.accessToken,
+                    upi: data.email.split("@")[0],
                 }),
             }
         );
@@ -79,7 +81,7 @@ const useGoogleSignIn = (
 
 
               if (userInfo.data.email.endsWith("aucklanduni.ac.nz")) {
-                 const userUPI: string = userInfo.data.email.split("@")[0];
+                const userUPI: string = userInfo.data.email.split("@")[0];
                   const getUserData = async () => {
                       await fetch(
                           `${import.meta.env.VITE_SERVER_URL}/api/user/` +
@@ -102,6 +104,7 @@ const useGoogleSignIn = (
                                       lastName: userInfo.data.lastName,
                                       email: userInfo.data.email,
                                       accessToken: tokenResponse.access_token,
+                                      upi: userUPI,
                                   });
                               } else {
                                   console.log("Posting User Data");
@@ -110,6 +113,7 @@ const useGoogleSignIn = (
                                       lastName: userInfo.data.lastName,
                                       email: userInfo.data.email,
                                       accessToken: tokenResponse.access_token,
+                                      upi: userUPI,
                                   });
                               }
                           })

@@ -39,10 +39,10 @@ userRoutes.post("/check-user", async (req: Request, res: Response) => {
 })
 
 // GET /api/user/:upi
-userRoutes.get("/:email", async (req: Request, res: Response) => {
-  const email = req.params.email
+userRoutes.get("/:upi", async (req: Request, res: Response) => {
+  const upi = req.params.upi
   try {
-    const user = await User.findOne({ upi: email }).exec() // Await the result or use exec()
+    const user = await User.findOne({ upi: upi }).exec() // Await the result or use exec()
     if (user) {
       res.json(user)
     } else {

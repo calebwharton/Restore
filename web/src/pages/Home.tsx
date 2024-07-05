@@ -1,6 +1,6 @@
 import { useState } from "react";
 import GoogleSigninBtn from "@components/sign-in-button";
-import "../styles/page styles/Admin-Login.css";
+import '../styles/Admin-Login.css';
 import useGoogleSignIn from '@components/login';
 import { bouncy } from "ldrs";
 
@@ -15,8 +15,8 @@ function AdminLogin() {
         <div className="admin-login-outer background-admin-login">
             <div className="admin-login-left-items">
                 <h2 className="welcome-title-admin-login">Welcome to the</h2>
-                <h1 className="passport-title-admin-login">WDCC Passport</h1>
-                <h2 className="dashboard-title-admin-login">Admin Dashboard</h2>
+                <h1 className="passport-title-admin-login">Braincells</h1>
+                <h2 className="dashboard-title-admin-login">Hackathon</h2>
                 {isLoading ? (
                     <div className="py-2">
                         <l-bouncy

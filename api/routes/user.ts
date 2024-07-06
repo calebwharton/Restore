@@ -59,10 +59,8 @@ userRoutes.post("/", (req: Request, res: Response) => {
 
   // Logic to create a new user in the database
   const newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
     email: req.body.email,
-    accessToken: req.body.accessToken,
+    password: req.body.password,
   })
 
   try {

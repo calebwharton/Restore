@@ -1,33 +1,24 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GoogleSigninBtn from "@components/sign-in-button";
-import '../styles/Admin-Login.css';
-import useGoogleSignIn from '@components/login';
+import '../styles/login.css';
 import { bouncy } from "ldrs";
 
 function AdminLogin() {
-    const [isLoading, setLoading] = useState<boolean>(false);
-    const url = window.location.pathname;
-    const handleSignIn = useGoogleSignIn(url, setLoading);
 
+      const navigate = useNavigate();
+      const handleSignInClick = () => {
+      navigate('/sign-in');
+      };
+  
     bouncy.register();
 
     return (
         <div className="admin-login-outer background-admin-login">
             <div className="admin-login-left-items">
                 <h2 className="welcome-title-admin-login">Welcome to the</h2>
-                <h1 className="passport-title-admin-login">Braincells</h1>
-                <h2 className="dashboard-title-admin-login">Hackathon</h2>
-                {isLoading ? (
-                    <div className="py-2">
-                        <l-bouncy
-                            size="60"
-                            speed="1.75"
-                            color="#03045e"
-                        ></l-bouncy>
-                    </div>
-                ) : (
-                    <GoogleSigninBtn onClick={handleSignIn} adminLogin={true} />
-                )}
+                <h1 className="passport-title-admin-login">Brainies</h1>
+                <h2 className="dashboard-title-admin-login">Project</h2>
+                <GoogleSigninBtn onClick={handleSignInClick} />
             </div>
             <div className="admin-login-right-items">
             </div>

@@ -1,4 +1,3 @@
-import { useGoogleLogin } from "react-oauth-google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -6,8 +5,6 @@ interface UserData {
     firstName: string;
     lastName: string;
     email: string;
-    accessToken: string;
-    upi: string;
 }
 
 // New user to MongoDB
@@ -19,7 +16,6 @@ const postUserData = async (data: UserData) => {
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
-            accessToken: data.accessToken,
         }),
     })
         .then((response) => {
@@ -43,8 +39,6 @@ const updateUserData = async (data: UserData) => {
                     firstName: data.firstName,
                     lastName: data.lastName,
                     email: data.email,
-                    accessToken: data.accessToken,
-                    upi: data.email.split("@")[0],
                 }),
             }
         );
@@ -60,32 +54,20 @@ const updateUserData = async (data: UserData) => {
 };
 
 // Passes UPI to WDCC member checker API
-const useGoogleSignIn = (
+const signIn = (
   currentPage: string,
   setLoading: (loading: boolean) => void
 ) => {
-  const navigate = useNavigate();
 
-  const handleSignIn = useGoogleLogin({
+  const handleSignIn = signIn({
       onSuccess: async (tokenResponse) => {
           try {
               setLoading(true);
-              const userInfo = await axios.get(
-                  "https://www.googleapis.com/oauth2/v3/userinfo",
-                  {
-                      headers: {
-                          Authorization: `Bearer ${tokenResponse.access_token}`,
-                      },
-                  }
-              );
 
-
-              if (userInfo.data.email.endsWith("aucklanduni.ac.nz")) {
-                const userUPI: string = userInfo.data.email.split("@")[0];
                   const getUserData = async () => {
                       await fetch(
                           `${import.meta.env.VITE_SERVER_URL}/api/user/` +
-                              userUPI,
+                              userInfo.data.email,
                           {
                               method: "GET",
                           }
@@ -103,8 +85,6 @@ const useGoogleSignIn = (
                                       firstName: userInfo.data.firstName,
                                       lastName: userInfo.data.lastName,
                                       email: userInfo.data.email,
-                                      accessToken: tokenResponse.access_token,
-                                      upi: userUPI,
                                   });
                               } else {
                                   console.log("Posting User Data");
@@ -112,8 +92,6 @@ const useGoogleSignIn = (
                                       firstName: userInfo.data.firstName,
                                       lastName: userInfo.data.lastName,
                                       email: userInfo.data.email,
-                                      accessToken: tokenResponse.access_token,
-                                      upi: userUPI,
                                   });
                               }
                           })
@@ -124,10 +102,6 @@ const useGoogleSignIn = (
 
                   // Check MongoDB if user is in DB, then updates/posts user data accordingly
                   getUserData();
-              } else {
-                  // Redirect to error page if user is not in WDCC
-                  navigate("/sign-in-error");
-              }
           } catch (error) {
               console.error("Failed to fetch user info:", error);
           }

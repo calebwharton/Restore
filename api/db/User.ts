@@ -11,12 +11,12 @@ const userSchema = new Schema({
     required: true,
   },
   itemsList: {
-    type: Array,
-    required: true,
+    type: [String],
+    default: [],
   },
   balance: {
     type: Number,
-    required: true,
+    default: 0,
   },
   
 });

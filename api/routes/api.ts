@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 
 config();
 
-const uri = process.env.DATABASE_URL;
+const uri = process.env.DATABASE_URL!;
 console.log("hi")
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version

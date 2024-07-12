@@ -1,29 +1,30 @@
-import { useNavigate } from "react-router-dom";
-import GoogleSigninBtn from "@components/sign-in-button";
-import '../styles/login.css';
-import { bouncy } from "ldrs";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/Home.css';
 
-function AdminLogin() {
-
-      const navigate = useNavigate();
-      const handleSignInClick = () => {
-      navigate('/sign-in');
-      };
-  
-    bouncy.register();
-
+const Home: React.FC = () => {
     return (
-        <div className="admin-login-outer background-admin-login">
-            <div className="admin-login-left-items">
-                <h2 className="welcome-title-admin-login">Welcome to the</h2>
-                <h1 className="passport-title-admin-login">Brainies</h1>
-                <h2 className="dashboard-title-admin-login">Project</h2>
-                <GoogleSigninBtn onClick={handleSignInClick} />
-            </div>
-            <div className="admin-login-right-items">
+        <div>
+            <nav className="navbar">
+                <div className="navbar-left">
+                    <Link to="/home">Home</Link>
+                    <Link to="/about-us">About Us</Link>
+                </div>
+                <div className="navbar-center">
+                    <span className="logo">Placeholder Name</span>
+                </div>
+                <div className="navbar-right">
+                    <Link to="/page-one">Page 1</Link>
+                    <Link to="/page-two">Page 2</Link>
+                </div>
+            </nav>
+            <div className='page-outer background-page'>
+                <div className='page-inner'>
+                    <h1>Home</h1>
+                </div>
             </div>
         </div>
     );
 }
 
-export default AdminLogin;
+export default Home;

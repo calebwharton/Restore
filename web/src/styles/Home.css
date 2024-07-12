@@ -1,0 +1,54 @@
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#adacad;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    color: black;
+}
+
+.navbar-left,
+.navbar-right {
+    display: flex;
+}
+
+.navbar-center {
+    text-align: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.page-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 50px); 
+    background-color: white; 
+}
+
+.background-page {
+    background-color: #fff; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-inner {
+    width: 100%;
+    max-width: 500px; 
+}

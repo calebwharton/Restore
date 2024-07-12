@@ -6,6 +6,7 @@ import Login from "@pages/Login";
 import Store from "@pages/Store";
 import SignUp from "@pages/SignUp";
 import About from "@pages/About";
+import Profile from "@pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     {
         path: "/store",
         element: <Store />,
+    },
+    {
+        path: "/profile",
+        element: <Profile />,
     },
     {
         path: "/about",

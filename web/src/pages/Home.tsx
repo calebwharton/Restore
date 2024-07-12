@@ -1,28 +1,29 @@
-import { useQuery } from '@tanstack/react-query';
-import QueryKeys from '@utils/queryKeys';
-import axios from 'axios';
-import { useParams } from 'react-router';
-import urls from '@utils/urls';
+import { useNavigate } from "react-router-dom";
+import GoogleSigninBtn from "@components/sign-in-button";
+import '../styles/login.css';
+import { bouncy } from "ldrs";
 
-export default function Home() {
-  const { name } = useParams();
+function AdminLogin() {
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: [QueryKeys.GetIntro, name],
-    queryFn: async () => {
-      const { data } = await axios(`/hello/${name}`, {
-        method: 'get',
-        baseURL: urls.apiUrl,
-      });
-      return data;
-    },
-  });
+      const navigate = useNavigate();
+      const handleSignInClick = () => {
+      navigate('/sign-in');
+      };
+  
+    bouncy.register();
 
-  if (isLoading) {
-    return <div className="loading loading-spinner" />;
-  }
-  if (isError) {
-    return <div>Error: {error.name}</div>;
-  }
-  return <div>{data}</div>;
+    return (
+        <div className="admin-login-outer background-admin-login">
+            <div className="admin-login-left-items">
+                <h2 className="welcome-title-admin-login">Welcome to the</h2>
+                <h1 className="passport-title-admin-login">Brainies</h1>
+                <h2 className="dashboard-title-admin-login">Project</h2>
+                <GoogleSigninBtn onClick={handleSignInClick} />
+            </div>
+            <div className="admin-login-right-items">
+            </div>
+        </div>
+    );
 }
+
+export default AdminLogin;

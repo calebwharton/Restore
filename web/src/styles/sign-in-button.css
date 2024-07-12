@@ -1,0 +1,13 @@
+.button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 550;
+  background-color: #03045e;
+  color: #fff;
+  position: relative;
+  display: flex;
+  width: 40%;
+  padding: 2%;
+  border-radius: 20px;
+  font-size: 2em;
+  justify-content: center;
+}

@@ -13,10 +13,10 @@ const SignUpForm = () => {
         if (email && password) {
             try {
                 await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/user`,
+                    `${import.meta.env.VITE_SERVER_URL}/api/user/`,
                     {
-                        email,
-                        password,
+                        email: email,
+                        password: password,
                     },
 
                 );

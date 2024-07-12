@@ -56,6 +56,8 @@ userRoutes.get("/:upi", async (req: Request, res: Response) => {
 // POST /api/user
 userRoutes.post("/", (req: Request, res: Response) => {
   const userData = req.body
+  // console.log(req)
+
 
   // Logic to create a new user in the database
   const newUser = new User({

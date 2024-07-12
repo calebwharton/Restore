@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Home.css';
 
 const Home: React.FC = () => {
     return (
@@ -8,20 +7,25 @@ const Home: React.FC = () => {
             <nav className="navbar">
                 <div className="navbar-left">
                     <Link to="/home">Home</Link>
-                    <Link to="/about-us">About Us</Link>
+                    <Link to="/about">About</Link>
                 </div>
                 <div className="navbar-center">
-                    <span className="logo">Placeholder Name</span>
+                    <span className="logo">ReStore</span>
                 </div>
                 <div className="navbar-right">
-                    <Link to="/page-one">Page 1</Link>
-                    <Link to="/page-two">Page 2</Link>
+                    <Link to="/shop">Shop</Link>
+                    <Link to="/se;;">Sell</Link>
                 </div>
             </nav>
-            <div className='page-outer background-page'>
-                <div className='page-inner'>
-                    <h1>Home</h1>
+            <div className='left-items'>
+                <div className='our-story'>
+                    <h1>Our Story</h1>
+                    <p>Blah Blah</p>
                 </div>
+                <button>Shop Now</button>
+            </div>
+            <div className='right-items'>
+                <img src="hero.img" alt="hero image" />
             </div>
         </div>
     );

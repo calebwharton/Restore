@@ -11,7 +11,9 @@ function Login() {
     return (
         <div className="admin-login-outer background-admin-login bg-primary">
             <div className="admin-login-left-items">
-                <h1 className="passport-title-admin-login">ReStore</h1>
+                <h1 className="passport-title-admin-login font-title">
+                    ReStore
+                </h1>
                 <h2 className="dashboard-title-admin-login">
                     Reuse, Reduce, ReStore
                 </h2>

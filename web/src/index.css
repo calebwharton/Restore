@@ -10,3 +10,7 @@
     box-sizing: border-box;
     min-width: 0;
 }
+
+:root {
+    background-color: #fdfad7;
+}

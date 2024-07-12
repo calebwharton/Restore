@@ -1,6 +1,6 @@
 const Banner = () => {
     return (
-        <div className="my-8 py-20 font-title text-white bg-secondary">
+        <div className="my-8 py-20 font-title text-primary bg-secondary">
             <div className="text-left ml-20">
                 <h1 className="text-4xl  ">REDUCE</h1>
                 <h1 className="text-4xl  ">REUSE</h1>

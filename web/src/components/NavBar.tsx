@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
     return (
         <div className="">
-            <nav className="navbar bg-gprimary py-6">
+            <nav className="navbar bg-gprimary text-primary py-6">
                 <div className="navbar-left">
                     <Link to="/">HOME</Link>
                     <Link to="/about">ABOUT</Link>

@@ -1,10 +1,15 @@
+import Banner from "@components/Banner";
+import HowReStoreWorks from "@components/HowReStoreWorks";
 import NavBar from "@components/NavBar";
 import React from "react";
 
 const Home: React.FC = () => {
     return (
         <div>
-            <NavBar></NavBar>
+            <NavBar />
+            <Banner />
+            <HowReStoreWorks />
+
             <div className="left-items">
                 <div className="our-story">
                     <h1>Our Story</h1>

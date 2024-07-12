@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/AboutUs.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/AboutUs.css";
 
-const AboutUs: React.FC = () => {
+const About: React.FC = () => {
     return (
         <div>
             <nav className="navbar">
@@ -16,13 +16,13 @@ const AboutUs: React.FC = () => {
                     <Link to="/generic-page-two">Page 2</Link>
                 </div>
             </nav>
-            <div className='page-outer background-page'>
-                <div className='page-inner'>
+            <div className="page-outer background-page">
+                <div className="page-inner">
                     <h1>AboutUs</h1>
                 </div>
             </div>
         </div>
     );
-}
+};
 
-export default AboutUs;
+export default About;

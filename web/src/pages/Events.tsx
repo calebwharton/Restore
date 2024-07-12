@@ -1,7 +1,7 @@
 import NavBar from "@components/NavBar";
 import React from "react";
 
-const Home: React.FC = () => {
+const Events: React.FC = () => {
     return (
         <div>
             <NavBar />
@@ -23,4 +23,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default Events;

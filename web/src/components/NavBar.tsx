@@ -6,14 +6,15 @@ export default function NavBar() {
             <nav className="navbar bg-gprimary text-primary py-6">
                 <div className="navbar-left">
                     <Link to="/">HOME</Link>
-                    <Link to="/about">ABOUT</Link>
+                    <Link to="/about">ABOUT US</Link>
                 </div>
                 <div className="navbar-center">
                     <span className="logo font-title text-4xl">ReStore</span>
                 </div>
                 <div className="navbar-right">
-                    <Link to="/store">SHOP</Link>
-                    <Link to="/sell">SELL</Link>
+                    <Link to="/store">EVENTS</Link>
+                    <Link to="/sell">LEADERBOARD</Link>
+                    <Link to="/profile">Profile</Link>
                 </div>
             </nav>
         </div>

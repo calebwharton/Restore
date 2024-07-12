@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState } from "react";
 import Home from "@pages/Home";
 import Login from "@pages/Login";
-import Store from "@pages/Store";
+import Store from "@pages/Events";
 import SignUp from "@pages/SignUp";
 import About from "@pages/About";
 import Profile from "@pages/Profile";

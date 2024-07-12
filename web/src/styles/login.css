@@ -11,7 +11,6 @@
 }
 
 .admin-login-left-items {
-  margin-top: 15%;
   align-self: start;
   display: inline-block;
   width: 40%;
@@ -21,13 +20,10 @@
 }
 
 .admin-login-right-items {
-  margin-top: 15%;
   align-self: flex-end;
   display: inline-block;
   width: 50%;
-  margin-top: 8%;
   margin-left: auto;
-  margin-bottom: 5%;
 }
 
 .welcome-title-admin-login {

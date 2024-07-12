@@ -19,7 +19,8 @@ function AdminLogin() {
                 <h2 className="dashboard-title-admin-login">Project</h2>
                 <GoogleSigninBtn onClick={handleSignInClick} />
             </div>
-            <div className="admin-login-right-items"></div>
+            <div className="admin-login-right-items bg-gprimary h-screen">
+            </div>
         </div>
     );
 }

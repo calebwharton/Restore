@@ -1,22 +1,25 @@
 .background-admin-login {
   min-height: 100vh;
-  background-color: #e1ebff;
+  background-color: #FDFAD7;
+  display: flex;
+  align-items: center;
 }
 
 .admin-login-container {
   width: 100%;
+  display: flex;
   justify-content: center;
   align-content: space-between;
-  display: flex;
 }
 
 .admin-login-left-items {
-  align-self: start;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
   width: 40%;
   margin-left: 10%;
   margin-right: auto;
-  color: #03045e;
+  color: #E5ECC3;
 }
 
 .admin-login-right-items {
@@ -24,22 +27,34 @@
   display: inline-block;
   width: 50%;
   margin-left: auto;
-}
-
-.welcome-title-admin-login {
-  font-style: italic;
-  font-size: 3em;
-  margin-bottom: 3%;
-  font-weight: 100;
+  background-color: #ABBA77; 
+  min-height: 100vh; 
 }
 
 .passport-title-admin-login {
   font-size: 4em;
   font-weight: 700;
+  color: #ABBA77;
 }
 
 .dashboard-title-admin-login {
-  font-size: 3em;
+  font-size: 1.5em;
   font-weight: 250;
   margin-bottom: 3%;
+  color: #ABBA77;
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.input-field {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  background-color: #E5ECC3;
 }

@@ -12,7 +12,7 @@ export default {
                 body: ["Open Sans"],
             },
             colors: {
-                primary: "#F4DEA2",
+                primary: "#FDFAD7",
                 secondary: "#FDFAD7",
                 accent: "#D4A473",
                 gprimary: "#ABBA77",

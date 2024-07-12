@@ -14,9 +14,12 @@ function AdminLogin() {
     return (
         <div className="admin-login-outer background-admin-login bg-primary">
             <div className="admin-login-left-items">
-                <h2 className="welcome-title-admin-login">Welcome to the</h2>
-                <h1 className="passport-title-admin-login">Brainies</h1>
-                <h2 className="dashboard-title-admin-login">Project</h2>
+                <h1 className="passport-title-admin-login">ReStore</h1>
+                <h2 className="dashboard-title-admin-login">Reuse, Reduce, ReStore</h2>
+                <div className="sign-in-form">
+                    <input type="text" placeholder="Username" className="input-field" />
+                    <input type="password" placeholder="Password" className="input-field" />
+                </div>
                 <GoogleSigninBtn onClick={handleSignInClick} />
             </div>
             <div className="admin-login-right-items bg-gprimary h-screen">

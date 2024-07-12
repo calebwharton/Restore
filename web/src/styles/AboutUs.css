@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.page-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Adjust as needed */
+}
+
+.background-page {
+    background-color: #fff; /* Adjust as needed */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-inner {
+    width: 100%;
+    max-width: 500px; /* Adjust as needed */
+}

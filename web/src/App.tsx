@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useState } from 'react';
 import Home from '@pages/Home';
 import Form from '@pages/Form';
+import AboutUs from '@pages/AboutUs';
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: '/sign-in',
     element: <Form />
+  },
+  {
+    path: '/about-us',
+    element: <AboutUs />
   }
 ]);
 

@@ -7,7 +7,7 @@ interface GoogleSignin {
 
 const GoogleSigninBtn = ({ onClick }: GoogleSignin) => {
     return (
-        <button className={"button bg-accent"} onClick={onClick}>
+        <button className={"button bg-gprimary"} onClick={onClick}>
             <h3>Sign In</h3>
         </button>
     );

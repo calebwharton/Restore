@@ -17,32 +17,32 @@ userRoutes.get("/", async (req: Request, res: Response) => {
 })
 
 
-userRoutes.post("/check-user", async (req: Request, res: Response) => {
-  const accessToken = req.body.accessToken;
-  try {
-    const response = await User.findOne({ accessToken: accessToken }).exec()
-    console.log(response)
-    if (response != undefined && response !== null) {
-      res.status(200).json({ user: response, success: true })
+// userRoutes.post("/check-user", async (req: Request, res: Response) => {
+//   const accessToken = req.body.email;
+//   try {
+//     const response = await User.findOne({ email: String }).exec()
+//     console.log(response)
+//     if (response != undefined && response !== null) {
+//       res.status(200).json({ user: response, success: true })
 
-    } else {
-      res.status(200).json({
-        success: false,
-        error: "User not found"
-      })
-    }
-  } catch (error) {
-    res.status(400).json({ success: false, errorMessage: error })
-  }
+//     } else {
+//       res.status(200).json({
+//         success: false,
+//         error: "User not found"
+//       })
+//     }
+//   } catch (error) {
+//     res.status(400).json({ success: false, errorMessage: error })
+//   }
 
 
-})
+// })
 
 // GET /api/user/:upi
 userRoutes.get("/:upi", async (req: Request, res: Response) => {
-  const upi = req.params.upi
+  const email = req.params.email
   try {
-    const user = await User.findOne({ upi: upi }).exec() // Await the result or use exec()
+    const user = await User.findOne({ email: email }).exec() // Await the result or use exec()
     if (user) {
       res.json(user)
     } else {

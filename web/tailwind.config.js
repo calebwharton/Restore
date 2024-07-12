@@ -10,6 +10,7 @@ export default {
             fontFamily: {
                 sans: ["Montserrat"],
                 body: ["Open Sans"],
+                title: ["Rubik Mono One"],
             },
             colors: {
                 primary: "#FDFAD7",

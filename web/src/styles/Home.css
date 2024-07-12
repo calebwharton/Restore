@@ -1,9 +1,9 @@
-
+/* Navbar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #adacad;
+    background-color:#adacad;
     padding: 10px 20px;
     color: white;
 }
@@ -18,14 +18,13 @@
     color: black;
 }
 
-.navbar-left {
-    display: flex;
-    align-items: center;
-}
-
+.navbar-left,
 .navbar-right {
     display: flex;
-    align-items: center;
+}
+
+.navbar-center {
+    text-align: center;
 }
 
 .logo {

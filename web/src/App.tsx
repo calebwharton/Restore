@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Landing from '@pages/Landing';
 import Form from '@pages/Form';
 import AboutUs from '@pages/AboutUs';
+import Home from '@pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: '/about-us',
     element: <AboutUs />
+  },
+  {
+    path: '/home',
+    element: <Home />
   }
 ]);
 

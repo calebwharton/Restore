@@ -13,7 +13,7 @@ export default {
             },
             colors: {
                 primary: "#FDFAD7",
-                secondary: "#FDFAD7",
+                secondary: "#F4DEA2",
                 accent: "#D4A473",
                 gprimary: "#ABBA77",
                 gsecondary: "#E5ECC3",

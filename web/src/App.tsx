@@ -1,35 +1,45 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useState } from 'react';
-import Landing from '@pages/Landing';
-import Form from '@pages/Form';
-import AboutUs from '@pages/AboutUs';
-import Home from '@pages/Home';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
+import Home from "@pages/Home";
+import Login from "@pages/Login";
+import Store from "@pages/Store";
+import SignUp from "@pages/SignUp";
+import About from "@pages/About";
+import Profile from "@pages/Profile";
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Landing />,
-  },
-  {
-    path: '/sign-in',
-    element: <Form />
-  },
-  {
-    path: '/about-us',
-    element: <AboutUs />
-  },
-  {
-    path: '/home',
-    element: <Home />
-  }
+    {
+        path: "/",
+        element: <Home />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/signup",
+        element: <SignUp />,
+    },
+    {
+        path: "/store",
+        element: <Store />,
+    },
+    {
+        path: "/profile",
+        element: <Profile />,
+    },
+    {
+        path: "/about",
+        element: <About />,
+    },
 ]);
 
 export default function App() {
-  const [queryClient] = useState(() => new QueryClient());
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+    const [queryClient] = useState(() => new QueryClient());
+    return (
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+        </QueryClientProvider>
+    );
 }

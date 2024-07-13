@@ -2,7 +2,12 @@
 // import HowReStoreWorks from "@components/HowReStoreWorks";
 import NavBar from "@components/NavBar";
 import React from "react";
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import {
+    AdvancedMarker,
+    APIProvider,
+    Map,
+    Pin,
+} from "@vis.gl/react-google-maps";
 
 const Home: React.FC = () => {
     const newZealandBounds = {
@@ -23,11 +28,23 @@ const Home: React.FC = () => {
                     defaultZoom={11}
                     gestureHandling={"greedy"}
                     disableDefaultUI={true}
+                    mapId={"42a5de44a63d9064"}
                     restriction={{
                         latLngBounds: newZealandBounds,
                         strictBounds: false,
                     }}
-                />
+                >
+                    <AdvancedMarker
+                        key="test"
+                        position={{ lat: -36.848461, lng: 174.763336 }}
+                    >
+                        <Pin
+                            background={"#FBBC04"}
+                            glyphColor={"#000"}
+                            borderColor={"#000"}
+                        />
+                    </AdvancedMarker>
+                </Map>
             </APIProvider>
 
             {/* <div className="left-items">

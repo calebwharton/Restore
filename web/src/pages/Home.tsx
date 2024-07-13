@@ -16,6 +16,7 @@ const Home: React.FC = () => {
         west: 166.0,
         east: 179.0,
     };
+
     return (
         <div>
             <NavBar />
@@ -24,11 +25,13 @@ const Home: React.FC = () => {
             <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
                 <Map
                     style={{ width: "100%", height: "100vh" }}
+                    // styles={mapStyles}
                     defaultCenter={{ lat: -36.848461, lng: 174.763336 }}
                     defaultZoom={11}
                     gestureHandling={"greedy"}
                     disableDefaultUI={true}
-                    mapId={"42a5de44a63d9064"}
+                    mapId={"f838f316061bfba4"}
+                    // mapTypeId={google.maps.MapTypeId.ROADMAP}
                     restriction={{
                         latLngBounds: newZealandBounds,
                         strictBounds: false,

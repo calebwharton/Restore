@@ -15,8 +15,8 @@ const Home: React.FC = () => {
     const newZealandBounds = {
         north: -36.5,
         south: -37.5,
-        west: 174.5,
-        east: 175.5,
+        west: 172.5,
+        east: 176.5,
     };
 
     type Poi = { key: string; location: google.maps.LatLngLiteral };

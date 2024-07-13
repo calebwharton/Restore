@@ -64,9 +64,11 @@ const Home: React.FC = () => {
     const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
 
     const handleMarkerClick = (key: string, events: string[]) => {
+        fetchData();
         setSelectedMarker(key);
         setSidebarVisible(true);
         setSelectedData(events);
+        // refreshEvents
         // console.log(events);
     };
 

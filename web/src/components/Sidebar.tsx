@@ -9,12 +9,14 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
  
     const [isCreatingEvent, setIsCreatingEvent] = useState(false);
+    const [isUser, setIsUser] = useState(false);
     // const [isInterested, setIsInterested] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState("");
     const [eventDate, setEventDate] = useState("");
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+    const user = localStorage.getItem("user_id")
 
     const handleCreateEvent = () => {
         setIsCreatingEvent(true);
@@ -22,7 +24,6 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
 
     const handleSaveEvent = async () => {
         // Save event logic
-        const user = localStorage.getItem("user_id")
         try{
             
             await axios.post(
@@ -59,12 +60,15 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
         if(selectedMarker){
             setLocation(selectedMarker);
         }
+        if (user){
+            setIsUser(true)
+        }
     },[selectedMarker]);
 
     return (
         <div className="sidebar">
             {selectedMarker ? (
-                isCreatingEvent ? (
+                isCreatingEvent  ? (
                     <div className="flex flex-col h-full w-full text-left">
                         <button onClick={goBack} className="font-bold ml-auto">
                             Back
@@ -145,13 +149,15 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
                             <p>Location</p>
                             <p>Date</p>
                         </div>
+                        {isUser && (
 
-                        <button
-                            className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
-                            onClick={handleCreateEvent}
-                        >
-                            CREATE
-                        </button>
+                            <button
+                                className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                onClick={handleCreateEvent}
+                            >
+                                CREATE
+                            </button>
+                        )}
                     </div>
                 )
             ) : (

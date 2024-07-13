@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     };
 
     const handleSaveEvent = async () => {
-        // Save event logic
+        // create the event
         try {
             await axios
                 .post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
@@ -99,18 +99,30 @@ const Sidebar: React.FC<SidebarProps> = ({
         } catch (error) {
             console.log("Error: ", error);
         }
+            console.log(newEvent.data)
 
-        try {
+            // add event to eventsCreated list of user
             await axios.post(
                 `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,
                 {
                     id: localStorage.getItem("user_id"),
-                    eventId: title,
+                    eventId: newEvent.data._id,
                 }
             );
+            
+            //add event to locattion
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,
+                {
+                    locationName: newEvent.data.place,
+                    eventid: newEvent.data._id,
+                }
+            );
+
         } catch (error) {
             console.log("Error: ", error);
         }
+
 
         console.log(
             `Event created for ${selectedMarker} on ${eventDate}. Desription: ${description}`

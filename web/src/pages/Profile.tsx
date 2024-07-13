@@ -1,11 +1,12 @@
 import Footer from "@components/Footer";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBarProfile";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Profile.css";
 import PointIcon from "@mui/icons-material/Timeline";
 import AttendIcon from "@mui/icons-material/FmdGood";
 import CreateIcon from "@mui/icons-material/Create";
+
 
 interface User {
   name: string;

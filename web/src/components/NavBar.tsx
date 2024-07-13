@@ -33,18 +33,11 @@ export default function NavBar() {
                             <AccountCircleIcon fontSize="large" />
                         </Link>
                     )}
-                    {isUserLoggedIn() ? (
-                        <button
-                            onClick={handleLogOut}
-                            className="text-primary ml-2"
-                        >
-                            LOGOUT
-                        </button>
-                    ) : (
-                        <Link to="/login" className="text-primary ml-2">
-                            LOGIN
-                        </Link>
-                    )}
+                    {!isUserLoggedIn() && (
+                    <Link to="/login" className="text-primary ml-2">
+                        LOGIN
+                    </Link>
+                )}
                 </div>
             </nav>
         </div>

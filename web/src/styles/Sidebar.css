@@ -1,10 +1,29 @@
-/* Sidebar Styles */
 .sidebar {
+    position: relative; 
     background-color: #AACCCC; 
-    color: white; 
+    color: #364652; 
     padding: 20px;
     height: 100%; 
     width: 40%;
+    overflow: hidden; 
+    text-align: center;
+}
+
+.sidebar::before {
+    content: ""; 
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;                            
+    bottom: -20px;
+    background-color: #FFF6E4; 
+    z-index: 0; 
+    border-radius: 10px; 
+}
+
+.sidebar > * {
+    position: relative; 
+    z-index: 1; 
 }
 
 button {
@@ -54,6 +73,7 @@ button {
     font-weight: 700;
     font-size: 2rem;
     color: #364652;
+    padding-top: 20px;
 }
 
 .title-line {
@@ -61,6 +81,13 @@ button {
     height: 4px;
     background-color: #364652;;
     margin-bottom: 20px;
-    margin-top: 10px;
+    margin-top: 15px;
     
+}
+
+.welcome-message{
+    font-weight: 600;
+    font-size: 2rem;
+    color: #364652;
+    margin: 30px;
 }

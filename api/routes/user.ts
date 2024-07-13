@@ -92,7 +92,7 @@ userRoutes.post("/add-event-created", async (req: Request, res: Response) => {
     }
 });
 
-userRoutes.get("/:id", async (req: Request, res: Response) =>{
+userRoutes.get("/get/:id", async (req: Request, res: Response) =>{
   const { id } = req.params;
   console.log(id)
   try{
@@ -106,5 +106,12 @@ userRoutes.get("/:id", async (req: Request, res: Response) =>{
   }
 })
 
-
+userRoutes.get("/get-all-users", async (req: Request, res: Response) =>{
+  try{
+    const users = await User.find();
+    res.status(200).json(users); 
+  }catch (error: any){
+    res.status(400).json({ message: error.message });
+  }
+})
 export default userRoutes;  

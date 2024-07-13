@@ -38,7 +38,15 @@ export default function CreateEvent() {
                     place: location,
                     eventCreator: user
             },
+        ).then(async (response) => {
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,{
+                    locationName: location,
+                    event: response.data._id
+            },
         )
+        console.log(response)
+        })
 
         }catch (error:any){
             console.log("Error: ", error)

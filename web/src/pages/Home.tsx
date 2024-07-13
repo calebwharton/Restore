@@ -1,75 +1,95 @@
-import React, { useState } from "react";
-import NavBar from "@components/NavBar";
-import Sidebar from "@components/Sidebar";
-
+import React, { useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar"; // Adjust path as per your actual file structure
+import ColourKey from "../components/ColourKey"; // Adjust path as per your actual file structure
 import {
     AdvancedMarker,
     APIProvider,
     Map,
     Pin,
-} from "@vis.gl/react-google-maps";
+} from "@vis.gl/react-google-maps"; // Assuming correct installation and import for @vis.gl/react-google-maps
+import NavBarHome from "../components/NavBarHome"; // Adjust path as per your actual file structure
+import axios from "axios";
+
+interface LocationData {
+    _id: string;
+    locationName: string;
+    longitude: number;
+    latitude: number;
+    events: string[]; // Adjust as per actual structure
+    __v: number;
+}
 
 const Home: React.FC = () => {
+    const [data, setData] = useState<LocationData[]>([]);
+    const [selectedData, setSelectedData] = useState<string[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get<LocationData[]>(
+                    `${import.meta.env.VITE_SERVER_URL}/api/location/`
+                );
+                setData(response.data);
+                console.log(response.data);
+            } catch (err) {
+                console.error("Error fetching data:", err);
+                // Handle error
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const newZealandBounds = {
-        north: -36.5,
+        north: -36.3,
         south: -37.5,
-        west: 174.5,
-        east: 175.5,
+        west: 172.5,
+        east: 176.5,
     };
 
-    type Poi = { key: string; location: google.maps.LatLngLiteral };
-    const locations: Poi[] = [
-        { key: "Orewa Beach", location: { lat: -36.5875, lng: 174.6942 } },
-        { key: "Takapuna Beach", location: { lat: -36.7863, lng: 174.7744 } },
-        { key: "Okahu Bay Beach", location: { lat: -36.8460, lng: 174.7960 } },
-        { key: "Mission Bay Auckland", location: { lat: -36.8480, lng: 174.8290 } },
-        { key: "Kendall Bay Beach", location: { lat: -36.8210, lng: 174.7470 } },
-        { key: "Long Bay Beach", location: { lat: -36.6833, lng: 174.7489 } },
-        { key: "Green Bay Beach", location: { lat: -36.9270, lng: 174.6960 } },
-        { key: "Point Chevalier Beach", location: { lat: -36.8573, lng: 174.7026 } },
-        { key: "Devonport Beach", location: { lat: -36.8300, lng: 174.7930 } },
-        { key: "Herne Bay Beach", location: { lat: -36.8360, lng: 174.7380 } },
-        { key: "Campbells Bay Beach", location: { lat: -36.7490, lng: 174.7590 } },
-        { key: "Charcoal Bay Beach", location: { lat: -36.8290, lng: 174.7280 } },
-        { key: "Mairangi Bay Beach", location: { lat: -36.7330, lng: 174.7490 } },
-        { key: "Sentinel Rd Beach", location: { lat: -36.8360, lng: 174.7380 } },
-        { key: "St Leonards Bay", location: { lat: -36.8270, lng: 174.7510 } },
-        { key: "Narrow Neck Beach", location: { lat: -36.8180, lng: 174.7990 } },
-        { key: "Ladies Bay Beach", location: { lat: -36.8520, lng: 174.8690 } },
-        { key: "St Heliers Beach", location: { lat: -36.8520, lng: 174.8690 } },
-        { key: "Chelsea Bay Beach", location: { lat: -36.8240, lng: 174.7190 } },
-        
-        
+    type Poi = {
+        key: string;
+        location: google.maps.LatLngLiteral;
+        events: string[];
+    };
+    const locations: Poi[] = data.map((item) => ({
+        key: item.locationName,
+        location: { lat: item.longitude, lng: item.latitude },
+        events: item.events,
+    }));
 
-    ];
+    // const locations: Poi[] = [
+    //     { key: "Orewa Beach", location: { lat: -36.5875, lng: 174.6942 } },
+    // ];
 
     const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
     const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
 
-    const handleMarkerClick = (key: string) => {
+    const handleMarkerClick = (key: string, events: string[]) => {
         setSelectedMarker(key);
         setSidebarVisible(true);
-    };
-
-    const toggleSidebar = () => {
-        setSidebarVisible(!isSidebarVisible);
+        setSelectedData(events);
     };
 
     return (
         <div>
-            <NavBar />
+            <NavBarHome />
+            <ColourKey />
             <div className="flex w-full h-screen">
-            <Sidebar selectedMarker={selectedMarker} />
+                <Sidebar selectedMarker={selectedMarker} data={selectedData} />
 
                 <div className={`${isSidebarVisible ? "w-full" : "w-full"}`}>
-                    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+                    {/* <p>{data[0].latitude}</p> */}
+                    <APIProvider
+                        apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+                    >
                         <Map
                             style={{ width: "100%", height: "100vh" }}
                             defaultCenter={{ lat: -36.848461, lng: 174.763336 }}
                             defaultZoom={13}
-                            gestureHandling={"greedy"}
+                            gestureHandling="greedy"
                             disableDefaultUI={true}
-                            mapId={"f838f316061bfba4"}
+                            mapId="f838f316061bfba4"
                             restriction={{
                                 latLngBounds: newZealandBounds,
                                 strictBounds: false,
@@ -79,12 +99,14 @@ const Home: React.FC = () => {
                                 <AdvancedMarker
                                     key={poi.key}
                                     position={poi.location}
-                                    onClick={() => handleMarkerClick(poi.key)}
+                                    onClick={() =>
+                                        handleMarkerClick(poi.key, poi.events)
+                                    }
                                 >
                                     <Pin
-                                        background={"#FBBC04"}
-                                        glyphColor={"#000"}
-                                        borderColor={"#000"}
+                                        background={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
+                                        glyphColor={"#FFFFFF"}
+                                        borderColor={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
                                     />
                                 </AdvancedMarker>
                             ))}

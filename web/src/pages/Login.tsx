@@ -49,7 +49,7 @@ const Login: React.FC<LoginProps> = () => {
                 <div className="sign-in-form">
                     <input
                         type="text"
-                        placeholder="Username"
+                        placeholder="Email"
                         className="input-field"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}

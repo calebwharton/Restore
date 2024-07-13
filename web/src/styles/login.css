@@ -1,60 +1,68 @@
 .background-admin-login {
-  min-height: 100vh;
-  background-color: #FDFAD7;
-  display: flex;
-  align-items: center;
+    min-height: 100vh;
+    background-color: #fdfad7;
+    display: flex;
+    align-items: center;
 }
 
 .admin-login-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
 }
 
 .admin-login-left-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  width: 40%;
-  margin-left: 10%;
-  margin-right: auto;
-  color: #E5ECC3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    margin-left: 10%;
+    margin-right: auto;
+    color: #e5ecc3;
 }
 
 .admin-login-right-items {
-  align-self: flex-end;
-  display: inline-block;
-  width: 50%;
-  margin-left: auto;
-  background-color: #ABBA77; 
-  min-height: 100vh; 
+    align-self: flex-end;
+    display: inline-block;
+    width: 70%;
+    margin-left: auto;
+    background-color: #abba77;
+    min-height: 100vh;
+    align-items: flex-start;
 }
 
 .passport-title-admin-login {
-  font-size: 4em;
-  font-weight: 700;
-  color: #ABBA77;
+    font-size: 4em;
+    font-weight: 700;
+    color: #abba77;
+    margin-left: 0%;
 }
 
 .dashboard-title-admin-login {
-  font-size: 1.5em;
-  font-weight: 250;
-  margin-bottom: 3%;
-  color: #ABBA77;
+    margin-top: -10px;
+    font-size: 1.4em;
+    font-weight: 350;
+    margin-bottom: 3%;
+    color: #abba77;
+    margin-left: 0%;
 }
 
 .sign-in-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+    margin-bottom: 0rem;
+    margin-top: 4rem;
+    margin-left: 0%;
+    font-size: 1.2em;
 }
 
 .input-field {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  background-color: #E5ECC3;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 2.2rem;
+    border-radius: 10px;
+    background-color: #e5ecc3;
 }

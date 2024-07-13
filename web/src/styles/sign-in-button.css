@@ -1,13 +1,16 @@
 .button {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 550;
-  background-color: #ABBA77;
-  color: #FDFAD7;
-  position: relative;
-  display: flex;
-  width: 40%;
-  padding: 2%;
-  border-radius: 20px;
-  font-size: 2em;
-  justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 550;
+    background-color: #abba77;
+    color: #fdfad7;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: 30%;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 1.6em;
+    justify-content: center;
+    margin-left: 30%;
 }
+

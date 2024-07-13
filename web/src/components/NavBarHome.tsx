@@ -20,7 +20,7 @@ export default function NavBarHome() {
     }
 
     return (
-        <div className="bg-navy py-6 z-10 absolute w-full mt-2 mx-2 rounded-xl -translate-x-px">
+        <div className="bar bg-navy py-6 z-10 absolute mt-1 mx-2 rounded-xl">
             <nav className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-8">
                     <Link to="/" className="px-6">

@@ -25,7 +25,7 @@ export default function NavBar() {
                     <Link to="/" className="px-6"><span className="text-offwhite font-title text-4xl">RESTORE</span></Link>
                     <Link to="/" className="px-6"><span className="menu-item text-offwhite text-lg">MAP</span></Link>
                     <Link to="/about" className="px-6"><span className="menu-item text-offwhite text-lg">ABOUT</span></Link>
-                    <Link to="/social" className="px-6"><span className="menu-item text-offwhite text-lg">SOCIAL</span></Link>
+                    <Link to="/social" className="px-6"><span className="menu-item text-offwhite text-lg">LEADERBOARD</span></Link>
                 </div>
                 <div>
                     {isUserLoggedIn() && (

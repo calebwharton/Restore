@@ -13,14 +13,12 @@ export default {
                 title: ["Rubik Mono One"],
             },
             colors: {
-                primary: "#FDFAD7",
-                secondary: "#F4DEA2",
-                // accent: "#D4A473",
-                gprimary: "#ABBA77",
-                gsecondary: "#E5ECC3",
                 navy: "#364652",
-                offwhite: "#FFF6E4",
+                primary: "#E7F3F3",
+                secondary: "#779EBA",
                 accent: "#AACCCC",
+                offwhite: "#FFF6E4",
+                
             },
         },
     },

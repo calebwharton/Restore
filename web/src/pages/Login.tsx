@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import GoogleSigninBtn from "@components/sign-in-button";
 import "../styles/login.css";
 import axios from "axios";
+import turtle from "../assets/turtle.png";
 
 interface LoginProps {}
 

@@ -1,17 +1,44 @@
-import React, { useState } from "react";
-// import NavBar from "@components/NavBar";
-import Sidebar from "@components/Sidebar";
-import ColourKey from "@components/ColourKey";
-
+import React, { useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar"; // Adjust path as per your actual file structure
+import ColourKey from "../components/ColourKey"; // Adjust path as per your actual file structure
 import {
     AdvancedMarker,
     APIProvider,
     Map,
     Pin,
-} from "@vis.gl/react-google-maps";
-import NavBarHome from "@components/NavBarHome";
+} from "@vis.gl/react-google-maps"; // Assuming correct installation and import for @vis.gl/react-google-maps
+import NavBarHome from "../components/NavBarHome"; // Adjust path as per your actual file structure
+import axios from "axios";
+
+interface LocationData {
+    _id: string;
+    locationName: string;
+    longitude: number;
+    latitude: number;
+    events: string[]; // Adjust as per actual structure
+    __v: number;
+}
 
 const Home: React.FC = () => {
+    const [data, setData] = useState<LocationData[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get<LocationData[]>(
+                    `${import.meta.env.VITE_SERVER_URL}/api/location/`
+                );
+                setData(response.data);
+                console.log(response.data);
+            } catch (err) {
+                console.error("Error fetching data:", err);
+                // Handle error
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const newZealandBounds = {
         north: -36.3,
         south: -37.5,
@@ -20,36 +47,14 @@ const Home: React.FC = () => {
     };
 
     type Poi = { key: string; location: google.maps.LatLngLiteral };
-    const locations: Poi[] = [
-        { key: "Orewa Beach", location: { lat: -36.5875, lng: 174.6942 } },
-        { key: "Takapuna Beach", location: { lat: -36.7863, lng: 174.7744 } },
-        { key: "Okahu Bay Beach", location: { lat: -36.846, lng: 174.796 } },
-        {
-            key: "Mission Bay Auckland",
-            location: { lat: -36.848, lng: 174.829 },
-        },
-        { key: "Kendall Bay Beach", location: { lat: -36.821, lng: 174.747 } },
-        { key: "Long Bay Beach", location: { lat: -36.6833, lng: 174.7489 } },
-        { key: "Green Bay Beach", location: { lat: -36.927, lng: 174.696 } },
-        {
-            key: "Point Chevalier Beach",
-            location: { lat: -36.8573, lng: 174.7026 },
-        },
-        { key: "Devonport Beach", location: { lat: -36.83, lng: 174.793 } },
-        { key: "Herne Bay Beach", location: { lat: -36.836, lng: 174.738 } },
-        {
-            key: "Campbells Bay Beach",
-            location: { lat: -36.749, lng: 174.759 },
-        },
-        { key: "Charcoal Bay Beach", location: { lat: -36.829, lng: 174.728 } },
-        { key: "Mairangi Bay Beach", location: { lat: -36.733, lng: 174.749 } },
-        { key: "Sentinel Rd Beach", location: { lat: -36.836, lng: 174.738 } },
-        { key: "St Leonards Bay", location: { lat: -36.827, lng: 174.751 } },
-        { key: "Narrow Neck Beach", location: { lat: -36.818, lng: 174.799 } },
-        { key: "Ladies Bay Beach", location: { lat: -36.852, lng: 174.869 } },
-        { key: "St Heliers Beach", location: { lat: -36.852, lng: 174.869 } },
-        { key: "Chelsea Bay Beach", location: { lat: -36.824, lng: 174.719 } },
-    ];
+    const locations: Poi[] = data.map((item) => ({
+        key: item.locationName,
+        location: { lat: item.longitude, lng: item.latitude },
+    }));
+
+    // const locations: Poi[] = [
+    //     { key: "Orewa Beach", location: { lat: -36.5875, lng: 174.6942 } },
+    // ];
 
     const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
     const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
@@ -59,10 +64,6 @@ const Home: React.FC = () => {
         setSidebarVisible(true);
     };
 
-    // const toggleSidebar = () => {
-    //     setSidebarVisible(!isSidebarVisible);
-    // };
-
     return (
         <div>
             <NavBarHome />
@@ -71,6 +72,7 @@ const Home: React.FC = () => {
                 <Sidebar selectedMarker={selectedMarker} />
 
                 <div className={`${isSidebarVisible ? "w-full" : "w-full"}`}>
+                    {/* <p>{data[0].latitude}</p> */}
                     <APIProvider
                         apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
                     >
@@ -78,9 +80,9 @@ const Home: React.FC = () => {
                             style={{ width: "100%", height: "100vh" }}
                             defaultCenter={{ lat: -36.848461, lng: 174.763336 }}
                             defaultZoom={13}
-                            gestureHandling={"greedy"}
+                            gestureHandling="greedy"
                             disableDefaultUI={true}
-                            mapId={"f838f316061bfba4"}
+                            mapId="f838f316061bfba4"
                             restriction={{
                                 latLngBounds: newZealandBounds,
                                 strictBounds: false,

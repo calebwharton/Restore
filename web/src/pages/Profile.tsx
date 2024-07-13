@@ -9,7 +9,8 @@ interface User {
     points: number;
     email: string;
     phone: string;
-    attendedEvents: string[];
+    eventsAttended: string[];
+    eventsCreated: string[];
 }
 
 export default function Profile() {
@@ -43,7 +44,8 @@ export default function Profile() {
                     <div className="profile-details">
                         <div className="profile-info">
                             <h2 className="profile-name">Name: {data.name}</h2>
-                            <h3 className="events-attended">Events Attended: {data.attendedEvents.length}</h3>
+                            <h3 className="events-attended">Events Attended: {data.eventsAttended.length}</h3>
+                            <h3 className="events-created">Events Created: {data.eventsCreated.length}</h3>                            
                             <h3 className="profile-points">Points: {data.points}</h3>
                             <h3 className="profile-email">Email: {data.email}</h3>
                             <h3 className="profile-phone">Phone: {data.phone}</h3>
@@ -62,7 +64,7 @@ export default function Profile() {
                             </tr>
                         </thead>
                         <tbody>
-                            {data?.attendedEvents.map((event, index) => (
+                            {data?.eventsAttended.map((event, index) => (
                                 <tr key={index}>
                                     <td>{event}</td>
                                 </tr>

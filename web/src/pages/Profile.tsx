@@ -61,8 +61,8 @@ export default function Profile() {
   return (
     <div className="bg-offwhite min-h-screen">
       <NavBar />
-      <div className="container mx-auto px-4 py-28">
-        <h1 className="text-4xl font-bold text-navy mb-4">DASHBOARD</h1>
+      <div className="mx-20 pb-28 mt-10">
+        <h1 className="font-title text-4xl font-bold text-navy">DASHBOARD</h1>
         <hr className="border-t-4 border-navy mb-8" />
         {data ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

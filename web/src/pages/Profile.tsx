@@ -42,7 +42,7 @@ export default function Profile() {
         {data ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
-              <div className="bg-accent p-6 rounded-lg shadow-md mb-8">
+              <div className="bg-primary p-6 rounded-lg shadow-md mb-8">
                 <h2 className="text-2xl font-bold text-navy mb-4">
                   PERSONAL INFO
                 </h2>
@@ -56,7 +56,7 @@ export default function Profile() {
                         type="text"
                         readOnly
                         value={data.name}
-                        className="block w-full text-[#7c96a9] px-3 py-2 bg-quietaccent border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                        className="block w-full text-[#7c96a9] px-3 py-2 bg-textboxbg border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                       />
                     </div>
                   </div>
@@ -69,7 +69,7 @@ export default function Profile() {
                         type="text"
                         readOnly
                         value={data.email}
-                        className="block w-full text-[#7c96a9] px-3 py-2 bg-quietaccent border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                        className="block w-full text-[#7c96a9] px-3 py-2 bg-textboxbg border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                       />
                     </div>
                   </div>
@@ -82,18 +82,18 @@ export default function Profile() {
                         type="text"
                         readOnly
                         value={data.phone}
-                        className="block w-full text-[#7c96a9] px-3 py-2 bg-quietaccent border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                        className="block w-full text-[#7c96a9] px-3 py-2 bg-textboxbg border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                       />
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="bg-accent p-6 rounded-lg shadow-md mb-8">
+              <div className="bg-primary p-6 rounded-lg shadow-md mb-8">
                 <h2 className="text-2xl font-bold text-navy mb-4">
                   STATISTICS
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="text-center bg-quietaccent p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
+                  <div className="text-center bg-textboxbg p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
                     <PointIcon className="text-navy custom-icon-size" />
                     <div>
                       <p className="text-3xl font-bold text-navy">
@@ -102,7 +102,7 @@ export default function Profile() {
                       <p className="text-lg text-navy">POINTS COLLECTED</p>
                     </div>
                   </div>
-                  <div className="text-center bg-quietaccent p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
+                  <div className="text-center bg-textboxbg p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
                     <AttendIcon className="h-10 w-10 text-navy custom-icon-size" />
                     <div>
                       <p className="text-3xl font-bold text-navy">
@@ -111,7 +111,7 @@ export default function Profile() {
                       <p className="text-lg text-navy">EVENTS ATTENDED</p>
                     </div>
                   </div>
-                  <div className="text-center bg-quietaccent p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
+                  <div className="text-center bg-textboxbg p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
                     <CreateIcon className="h-10 w-10 text-navy custom-icon-size" />
                     <div>
                       <p className="text-3xl font-bold text-navy">

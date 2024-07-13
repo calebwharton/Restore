@@ -19,7 +19,7 @@ export default function NavBarHome() {
     }
 
     return (
-        <div className="bg-navy py-6 z-10 absolute w-full mt-2 mx-2 rounded-xl -translate-x-px">
+        <div className="bg-navy py-6 z-10 absolute w-full mt-1 rounded-xl -translate-x-px">
             <nav className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-8">
                     <Link to="/" className="px-6">
@@ -39,7 +39,7 @@ export default function NavBarHome() {
                     </Link>
                     <Link to="/social" className="px-6">
                         <span className="menu-item text-offwhite text-lg">
-                            SOCIAL
+                            LEADERBOARD
                         </span>
                     </Link>
                 </div>

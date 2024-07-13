@@ -56,23 +56,23 @@ eventRoutes.get("/get-all-events", async (req: Request, res: Response) => {
     }
 });
 
-// Update an event by ID - idk if we need this - not gonna check it much
-eventRoutes.put("/:id", async (req: Request, res: Response) => {
-    const { title, description, price } = req.body;
-    const id = req.params.id;
-
-    try {
-        const updatedEvent = await Event.findByIdAndUpdate(id, { title, description, price }, { new: true });
-
-        if (!updatedEvent) {
-            return res.status(404).json({ message: "Item not found" });
+// add attendees
+eventRoutes.post("/add-atendee", async (req:Request, res:Response) =>{
+    const {eventId, userId} = req.body
+    console.log(eventId, userId)
+    try{
+        const event = await Event.findOne({_id : eventId})
+        if (!event){
+            return res.status(404).json({ message: 'Invalid credentials' });
         }
 
-        res.status(200).json(updatedEvent);
-    } catch (error: any) {
+        event.atendees.push(userId)
+        await event.save()
+        res.status(200).json(event); 
+    }catch (error: any){
         res.status(400).json({ message: error.message });
     }
-});
+})
 
 export default eventRoutes;
 

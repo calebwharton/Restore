@@ -12,8 +12,8 @@ export default function NavBar() {
                     <span className="logo font-title text-4xl">ReStore</span>
                 </div>
                 <div className="navbar-right">
-                    <Link to="/store">EVENTS</Link>
-                    <Link to="/sell">LEADERBOARD</Link>
+                    <Link to="/events">EVENTS</Link>
+                    <Link to="/leaderboard">LEADERBOARD</Link>
                     <Link to="/profile">Profile</Link>
                 </div>
             </nav>

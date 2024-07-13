@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/AboutUs.css";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";

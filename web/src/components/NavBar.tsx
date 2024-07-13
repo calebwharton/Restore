@@ -18,7 +18,10 @@ export default function NavBar() {
                     <Link to="/social" className="text-offwhite text-lg px-6">
                         CREATE
                     </Link>
-                    <Link to="/social" className="text-offwhite text-lg px-6">
+                    <Link
+                        to="/leaderboard"
+                        className="text-offwhite text-lg px-6"
+                    >
                         LEADERBOARD
                     </Link>
                 </div>

@@ -8,13 +8,14 @@ const eventRoutes = Router();
 
 // Create a new event
 eventRoutes.post("/", async (req: Request, res: Response) => {
-    const { eventName, description, place, eventCreator } = req.body;
+    const { eventName, description, place, date, eventCreator } = req.body;
 
     try {
         const newEvent = new Event({
             eventName: eventName,
             description: description,
             place: place,
+            date: date,
             eventCreator: eventCreator
         });
 

@@ -13,6 +13,10 @@ const eventSchema = new Schema({
     type: String,
     required: true
   },
+  date:{
+    type: Date,
+    required: true
+  },
   eventCreator: {
     type: String, //or we can change it to the id of the user
     required: true

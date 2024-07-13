@@ -73,6 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     };
 
     const handleSaveEvent = async () => {
+        const eventDateObject = new Date(eventDate);
         // create the event
         try {
             await axios
@@ -80,6 +81,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     eventName: title,
                     description: description,
                     place: location,
+                    date: eventDateObject,
                     eventCreator: user,
                 })
                 .then(async (response) => {

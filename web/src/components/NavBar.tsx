@@ -15,7 +15,10 @@ export default function NavBar() {
                     <Link to="/about" className="text-offwhite text-lg px-6">
                         ABOUT
                     </Link>
-                    <Link to="/social" className="text-offwhite text-lg px-6">
+                    <Link
+                        to="/createevent"
+                        className="text-offwhite text-lg px-6"
+                    >
                         CREATE
                     </Link>
                     <Link

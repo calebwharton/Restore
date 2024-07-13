@@ -1,28 +1,15 @@
-import React from 'react';
-import NavBar from "@components/NavBar";
-import '../styles/profile.css';
-import Key from  "@components/ColourKey"
+import Footer from "@components/Footer";
+import NavBar from "../components/NavBar";
 
-function Profile() {
+export default function Profile() {
     return (
-        <div className="profile-container">
+        <div>
             <NavBar />
-            <Key />
-            <div className="profile-content">
-                <h1 className="profile-title">MY  ACCOUNT</h1>
-                <hr className="title-line" />
-                <div className="profile-details">
-                    <div className="picture-placeholder"></div>
-                    <div className="profile-info">
-                        <p className="profile-name">NAME</p>
-                        <p className="events-attended">Events Attended: 5</p>
-                        <p className="events-attended">Points: 10</p>
-                        <p className="events-attended">placeholder</p>
-                    </div>
-                </div>
+            <div className="mx-20 mt-10">
+                <h1 className="font-title text-4xl text-navy">DASHBOARD</h1>
+                <div className="border-t-4 w-full mb-10 border-navy rounded-xl" />
             </div>
+            <Footer />
         </div>
     );
 }
-
-export default Profile;

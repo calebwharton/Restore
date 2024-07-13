@@ -45,9 +45,41 @@ export default function Profile() {
                         <div className="md:col-span-2">
                             <div className="bg-white p-6 rounded-lg shadow-md mb-8">
                                 <h2 className="text-2xl font-bold text-navy mb-4">PERSONAL INFO</h2>
-                                <p className="text-lg font-semibold">{data.name}</p>
-                                <p className="text-lg">{data.email}</p>
-                                <p className="text-lg">{data.phone}</p>
+                                <div className="space-y-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Name</label>
+                                        <div className="mt-1">
+                                            <input
+                                                type="text"
+                                                readOnly
+                                                value={data.name}
+                                                className="block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Email</label>
+                                        <div className="mt-1">
+                                            <input
+                                                type="text"
+                                                readOnly
+                                                value={data.email}
+                                                className="block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Phone</label>
+                                        <div className="mt-1">
+                                            <input
+                                                type="text"
+                                                readOnly
+                                                value={data.phone}
+                                                className="block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-md mb-8">
                                 <h2 className="text-2xl font-bold text-navy mb-4">STATISTICS</h2>

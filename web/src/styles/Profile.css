@@ -38,6 +38,30 @@
     margin-left: 30px;
 }
 
+.profile-box {
+    margin-bottom: 15px;
+}
+
+.profile-label {
+    display: block;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #364652;
+}
+
+.profile-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    color: #364652;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    pointer-events: none; /* To ensure the inputs are not editable */
+}
+
 .profile-name,
 .events-attended,
 .profile-points,

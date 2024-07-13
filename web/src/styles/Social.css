@@ -1,0 +1,56 @@
+.board {
+    width: 100%;
+    margin-top: 0px;
+    background-color: #FFF6E4;
+    overflow: hidden;
+    color: #364652;
+}
+
+.board-header, .board-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+
+}
+
+.board-row {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.board-header {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.column {
+    flex: 1;
+    text-align: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.event-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rank-1 {
+    font-size: 1.5rem; 
+    background-color: #E7F3F3; 
+    border: 2px solid #000; 
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 8px;
+    font-weight: 900;
+    
+}
+
+.trophy{
+    width: 50px;
+    height: auto;
+}

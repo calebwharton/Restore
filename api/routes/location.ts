@@ -27,13 +27,14 @@ locationRoutes.post("/", async (req: Request, res: Response) =>{
 
 //add events to location
 locationRoutes.post("/add-event", async (req: Request, res: Response) =>{
+    const {locationName, eventid} = req.body
+    // console.log(locationName, eventid)
     try{
-        const {locationName, event} = req.body
         const location = await Location.findOne({locationName: locationName})
         if(!location){
             return res.status(404).json({ message: 'Invalid credentials' });
         }
-        location.events.push(event)
+        location.events.push(eventid)
         console.log("Added to location")
         await location.save()
         res.status(200).json(location); 

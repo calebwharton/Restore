@@ -198,6 +198,19 @@ const Sidebar: React.FC<SidebarProps> = ({
         }
     };
 
+    function formatDate(dateString) {
+        // Create a new Date object from the input string
+        const date = new Date(dateString);
+
+        // Define options for toLocaleDateString
+        const options = { day: "numeric", month: "long", year: "numeric" };
+
+        // Format the date
+        const formattedDate = date.toLocaleDateString("en-GB", options);
+
+        return formattedDate;
+    }
+
     useEffect(() => {
         if (selectedMarker) {
             setLocation(selectedMarker);
@@ -265,7 +278,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 {selectedEvent.eventName}
                             </h1>
                             <p>{selectedMarker}</p>
-                            <p>{selectedEvent.date}</p>
+                            <p>{formatDate(selectedEvent.date)}</p>
                             <p>{selectedEvent.description}</p>
                         </div>
                         {isUser && (
@@ -292,7 +305,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                     {event.eventName}
                                 </h2>
                                 <p>{event.place}</p>
-                                <p>Date</p>
+                                <p>{formatDate(event.date)}</p>
                             </div>
                         ))}
 

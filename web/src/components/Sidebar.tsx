@@ -105,8 +105,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                         }
                     );
 
-
-
                     console.log(response);
                 });
             setTitle("");
@@ -181,7 +179,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             );
 
             await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}/api/event/add-atendee`,
+                `${import.meta.env.VITE_SERVER_URL}/api/event/add-attendee`,
 
                 {
                     eventId: selectedEvent._id,

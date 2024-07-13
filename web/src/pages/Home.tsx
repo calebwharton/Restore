@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar"; // Adjust path as per your actual file structure
-import ColourKey from "../components/ColourKey"; // Adjust path as per your actual file structure
+import Sidebar from "../components/Sidebar";
+import ColourKey from "../components/ColourKey";
 import {
     AdvancedMarker,
     APIProvider,
     Map,
     Pin,
-} from "@vis.gl/react-google-maps"; // Assuming correct installation and import for @vis.gl/react-google-maps
-import NavBarHome from "../components/NavBarHome"; // Adjust path as per your actual file structure
+} from "@vis.gl/react-google-maps";
+import NavBarHome from "../components/NavBarHome";
 import axios from "axios";
+import { differenceInDays, parseISO } from "date-fns";
 
 interface LocationData {
     _id: string;
@@ -22,6 +23,12 @@ interface LocationData {
 const Home: React.FC = () => {
     const [data, setData] = useState<LocationData[]>([]);
     const [selectedData, setSelectedData] = useState<string[]>([]);
+    const [pinColors, setPinColors] = useState<{
+        [key: string]: { background: string; borderColor: string };
+    }>({});
+    const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
+    const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
+
     const fetchData = async () => {
         try {
             const response = await axios.get<LocationData[]>(
@@ -38,48 +45,91 @@ const Home: React.FC = () => {
         fetchData();
     }, []);
 
-    const newZealandBounds = {
-        north: -36.3,
-        south: -37.5,
-        west: 172.5,
-        east: 176.5,
-    };
+    useEffect(() => {
+        const fetchPinColors = async () => {
+            const colors: {
+                [key: string]: { background: string; borderColor: string };
+            } = {};
 
-    type Poi = {
-        key: string;
-        location: google.maps.LatLngLiteral;
-        events: string[];
-    };
-    const locations: Poi[] = data.map((item) => ({
-        key: item.locationName,
-        location: { lat: item.longitude, lng: item.latitude },
-        events: item.events,
-    }));
+            for (const poi of data) {
+                let pinBackground = "#c2c2c2"; // Default to grey
+                let pinBorderColor = "#c2c2c2"; // Default to grey
 
-    // const locations: Poi[] = [
-    //     { key: "Orewa Beach", location: { lat: -36.5875, lng: 174.6942 } },
-    // ];
+                if (poi.events && poi.events.length > 0) {
+                    const eventDates: Date[] = [];
+                    for (const eventId of poi.events) {
+                        const event = await getEvent(eventId);
+                        if (event) {
+                            console.log(event);
 
-    const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
-    const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
+                            eventDates.push(event.date);
+                        }
+                    }
 
-    const handleMarkerClick = (key: string, events: string[]) => {
-        fetchData();
+                    const today = new Date().toISOString();
+                    const upcomingEvents = eventDates.filter(
+                        (date) => date >= today
+                    );
+
+                    console.log(upcomingEvents);
+
+                    if (upcomingEvents.length > 0) {
+                        const nearestEventDate = upcomingEvents.reduce((a, b) =>
+                            a < b ? a : b
+                        );
+                        const daysUntilEvent = differenceInDays(
+                            nearestEventDate,
+                            new Date()
+                        );
+
+                        if (daysUntilEvent < 7) {
+                            pinBackground = "#0096ff"; // Blue for events less than a week away
+                            pinBorderColor = "#0096ff"; // Blue for events less than a week away
+                        } else {
+                            pinBackground = "#ff4a4a"; // Red for events more than a week away
+                            pinBorderColor = "#ff4a4a"; // Red for events more than a week away
+                        }
+                    }
+                }
+
+                colors[poi.locationName] = {
+                    background: pinBackground,
+                    borderColor: pinBorderColor,
+                };
+            }
+
+            setPinColors(colors);
+        };
+
+        fetchPinColors();
+    }, [data]);
+
+    const handleMarkerClick = async (key: string, events: string[]) => {
         setSelectedMarker(key);
         setSidebarVisible(true);
         setSelectedData(events);
-        // refreshEvents
-        // console.log(events);
     };
+
+    async function getEvent(id: string) {
+        try {
+            const response = await axios.get(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${id}`
+            );
+            return response.data;
+        } catch (error) {
+            console.error(`Failed to fetch event with id ${id}:`, error);
+            return null;
+        }
+    }
 
     async function refreshEvents() {
         try {
+            fetchData();
             const response = await axios.get(
                 `${
                     import.meta.env.VITE_SERVER_URL
                 }/api/location/get-events/${selectedMarker}`
             );
-            console.log(response.data);
             setSelectedData(response.data);
         } catch (err) {
             console.error("Error fetching data:", err);
@@ -97,9 +147,7 @@ const Home: React.FC = () => {
                     data={selectedData}
                     onEventCreated={refreshEvents}
                 />
-
                 <div className={`${isSidebarVisible ? "w-full" : "w-full"}`}>
-                    {/* <p>{data[0].latitude}</p> */}
                     <APIProvider
                         apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
                     >
@@ -111,29 +159,38 @@ const Home: React.FC = () => {
                             disableDefaultUI={true}
                             mapId="f838f316061bfba4"
                             restriction={{
-                                latLngBounds: newZealandBounds,
+                                latLngBounds: {
+                                    north: -36.3,
+                                    south: -37.5,
+                                    west: 172.5,
+                                    east: 176.5,
+                                },
                                 strictBounds: false,
                             }}
                         >
-                            {locations.map((poi: Poi) => (
+                            {data.map((poi) => (
                                 <AdvancedMarker
-                                    key={poi.key}
-                                    position={poi.location}
+                                    key={poi.locationName}
+                                    position={{
+                                        lat: poi.longitude,
+                                        lng: poi.latitude,
+                                    }}
                                     onClick={() =>
-                                        handleMarkerClick(poi.key, poi.events)
+                                        handleMarkerClick(
+                                            poi.locationName,
+                                            poi.events
+                                        )
                                     }
                                 >
                                     <Pin
                                         background={
-                                            poi.events && poi.events.length > 0
-                                                ? "#ff4a4a"
-                                                : "#c2c2c2"
+                                            pinColors[poi.locationName]
+                                                ?.background || "#c2c2c2"
                                         }
                                         glyphColor={"#FFFFFF"}
                                         borderColor={
-                                            poi.events && poi.events.length > 0
-                                                ? "#ff4a4a"
-                                                : "#c2c2c2"
+                                            pinColors[poi.locationName]
+                                                ?.borderColor || "#c2c2c2"
                                         }
                                     />
                                 </AdvancedMarker>

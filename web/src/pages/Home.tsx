@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "@components/NavBar";
 import Sidebar from "@components/Sidebar";
+import ColourKey from "@components/ColourKey"
 
 import {
     AdvancedMarker,
@@ -58,6 +59,7 @@ const Home: React.FC = () => {
     return (
         <div>
             <NavBar />
+            <ColourKey />
             <div className="flex w-full h-screen">
             <Sidebar selectedMarker={selectedMarker} />
 

@@ -71,6 +71,31 @@ userRoutes.post("/add-event-attended", async (req: Request, res: Response) => {
     }
 });
 
+userRoutes.post("/remove-event-attended", async (req: Request, res: Response) => {
+    const { userid, eventId } = req.body;
+
+    try {
+        const user = await User.findById(userid);
+        if (!user) {
+            //if no such user
+            return res.status(404).json({ message: "Invalid credentials" });
+        }
+        
+        const eventIndex = user.eventsAttended.indexOf(eventId)
+        if (eventIndex === -1) {
+            return res.status(404).json({ message: 'User not found in attendees' });
+        }
+
+        user.eventsAttended.splice(eventIndex, 1)
+        user.points -= 10;
+        await user.save();
+
+        res.status(200).json(user);
+    } catch (error: any) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 //eventsCreated + points
 //need user id and event id
 userRoutes.post("/add-event-created", async (req: Request, res: Response) => {

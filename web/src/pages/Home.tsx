@@ -22,21 +22,19 @@ interface LocationData {
 const Home: React.FC = () => {
     const [data, setData] = useState<LocationData[]>([]);
     const [selectedData, setSelectedData] = useState<string[]>([]);
-
+    const fetchData = async () => {
+        try {
+            const response = await axios.get<LocationData[]>(
+                `${import.meta.env.VITE_SERVER_URL}/api/location/`
+            );
+            setData(response.data);
+            console.log(response.data);
+        } catch (err) {
+            console.error("Error fetching data:", err);
+            // Handle error
+        }
+    };
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get<LocationData[]>(
-                    `${import.meta.env.VITE_SERVER_URL}/api/location/`
-                );
-                setData(response.data);
-                console.log(response.data);
-            } catch (err) {
-                console.error("Error fetching data:", err);
-                // Handle error
-            }
-        };
-
         fetchData();
     }, []);
 
@@ -66,17 +64,39 @@ const Home: React.FC = () => {
     const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
 
     const handleMarkerClick = (key: string, events: string[]) => {
+        fetchData();
         setSelectedMarker(key);
         setSidebarVisible(true);
         setSelectedData(events);
+        // refreshEvents
+        // console.log(events);
     };
+
+    async function refreshEvents() {
+        try {
+            const response = await axios.get(
+                `${
+                    import.meta.env.VITE_SERVER_URL
+                }/api/location/get-events/${selectedMarker}`
+            );
+            console.log(response.data);
+            setSelectedData(response.data);
+        } catch (err) {
+            console.error("Error fetching data:", err);
+            // Handle error
+        }
+    }
 
     return (
         <div>
             <NavBarHome />
             <ColourKey />
             <div className="flex w-full h-screen">
-                <Sidebar selectedMarker={selectedMarker} data={selectedData} />
+                <Sidebar
+                    selectedMarker={selectedMarker}
+                    data={selectedData}
+                    onEventCreated={refreshEvents}
+                />
 
                 <div className={`${isSidebarVisible ? "w-full" : "w-full"}`}>
                     {/* <p>{data[0].latitude}</p> */}
@@ -104,9 +124,17 @@ const Home: React.FC = () => {
                                     }
                                 >
                                     <Pin
-                                        background={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
+                                        background={
+                                            poi.events && poi.events.length > 0
+                                                ? "#ff4a4a"
+                                                : "#c2c2c2"
+                                        }
                                         glyphColor={"#FFFFFF"}
-                                        borderColor={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
+                                        borderColor={
+                                            poi.events && poi.events.length > 0
+                                                ? "#ff4a4a"
+                                                : "#c2c2c2"
+                                        }
                                     />
                                 </AdvancedMarker>
                             ))}

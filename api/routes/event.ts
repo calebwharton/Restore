@@ -2,6 +2,7 @@ import { Router } from 'express';
 import type { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Event from '../db/Event';
+import axios from 'axios';
 
 const eventRoutes = Router();
 
@@ -57,7 +58,7 @@ eventRoutes.get("/get-all-events", async (req: Request, res: Response) => {
 });
 
 // add attendees
-eventRoutes.post("/add-atendee", async (req:Request, res:Response) =>{
+eventRoutes.post("/add-attendee", async (req:Request, res:Response) =>{
     const {eventId, userId} = req.body
     console.log(eventId, userId)
     try{
@@ -73,6 +74,36 @@ eventRoutes.post("/add-atendee", async (req:Request, res:Response) =>{
         res.status(400).json({ message: error.message });
     }
 })
+
+// Remove attendee
+eventRoutes.post("/remove-attendee", async (req: Request, res: Response) => {
+    const { eventId, userId } = req.body;
+    try {
+        const event = await Event.findOne({ _id: eventId });
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        const attendeeIndex = event.atendees.indexOf(userId);
+        if (attendeeIndex === -1) {
+            return res.status(404).json({ message: 'User not found in attendees' });
+        }
+
+        event.atendees.splice(attendeeIndex, 1);
+        await event.save();
+
+        const result = await axios.post("http://localhost:3000/api/user/remove-event-attended",
+            {
+                userid: userId,
+                eventId: eventId
+            })
+        // console.log("Result: ", result)
+
+        res.status(200).json(event);
+    } catch (error: any) {
+        res.status(400).json({ message: error.message });
+    }
+});
 
 export default eventRoutes;
 

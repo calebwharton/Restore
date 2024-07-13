@@ -9,12 +9,13 @@ import CreateIcon from "@mui/icons-material/Create";
 
 
 interface User {
-  name: string;
-  points: number;
-  email: string;
-  phone: string;
-  eventsAttended: { name: string; date: string; location: string }[];
-  eventsCreated: string[];
+
+    name: string;
+    points: number;
+    email: string;
+    phoneNumber: string;
+    eventsAttended: string[];
+    eventsCreated: string[];
 }
 export default function Profile() {
   const [data, setData] = useState<User | null>(null);
@@ -82,7 +83,7 @@ export default function Profile() {
                       <input
                         type="text"
                         readOnly
-                        value={data.phone}
+                        value={data.phoneNumber}
                         className="block w-full text-[#7c96a9] px-3 py-2 bg-textboxbg border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                       />
                     </div>

@@ -9,10 +9,12 @@ const locationRoutes = Router();
 //creating new event at location
 //pass location in payload
 locationRoutes.post("/", async (req: Request, res: Response) =>{
-    const { locationName} = req.body;
+    const { locationName, longitude, latitude } = req.body;
 
     const newLocation = new Location({
         locationName: locationName,
+        longitude: longitude,
+        latitude: latitude
     })
 
     try{
@@ -41,5 +43,13 @@ locationRoutes.post("/add-event", async (req: Request, res: Response) =>{
 
 })
 
+locationRoutes.get("/", async (req: Request, res: Response) =>{
+    try{
+        const locations = await Location.find()
+        res.status(200).json(locations); 
+    } catch (error: any){
+        res.status(400).json({ message: error.message });
+    }
+})
 
 export default locationRoutes;

@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "../styles/Navbar.css";
 
-
 export default function NavBar() {
     const navigate = useNavigate();
     // utils/auth.ts
@@ -27,12 +26,13 @@ export default function NavBar() {
                     <Link to="/" className="px-6"><span className="menu-item text-offwhite text-lg">MAP</span></Link>
                     <Link to="/about" className="px-6"><span className="menu-item text-offwhite text-lg">ABOUT</span></Link>
                     <Link to="/social" className="px-6"><span className="menu-item text-offwhite text-lg">SOCIAL</span></Link>
-
                 </div>
                 <div>
-                    <Link to="/profile" className="text-offwhite menu-icon">
-                        <AccountCircleIcon fontSize="large" />
-                    </Link>
+                    {isUserLoggedIn() && (
+                        <Link to="/profile" className="text-offwhite menu-icon">
+                            <AccountCircleIcon fontSize="large" />
+                        </Link>
+                    )}
                     {isUserLoggedIn() ? (
                         <button
                             onClick={handleLogOut}

@@ -69,6 +69,7 @@ const Home: React.FC = () => {
         setSelectedMarker(key);
         setSidebarVisible(true);
         setSelectedData(events);
+        // console.log(events);
     };
 
     return (
@@ -104,9 +105,17 @@ const Home: React.FC = () => {
                                     }
                                 >
                                     <Pin
-                                        background={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
+                                        background={
+                                            poi.events && poi.events.length > 0
+                                                ? "#ff4a4a"
+                                                : "#c2c2c2"
+                                        }
                                         glyphColor={"#FFFFFF"}
-                                        borderColor={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
+                                        borderColor={
+                                            poi.events && poi.events.length > 0
+                                                ? "#ff4a4a"
+                                                : "#c2c2c2"
+                                        }
                                     />
                                 </AdvancedMarker>
                             ))}

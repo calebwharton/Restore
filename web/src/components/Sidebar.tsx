@@ -34,12 +34,25 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
     const handleSaveEvent = async () => {
         // Save event logic
         try {
-            await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
-                eventName: title,
-                description: description,
-                place: location,
-                eventCreator: user,
-            });
+            await axios
+                .post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
+                    eventName: title,
+                    description: description,
+                    place: location,
+                    eventCreator: user,
+                })
+                .then(async (response) => {
+                    await axios.post(
+                        `${
+                            import.meta.env.VITE_SERVER_URL
+                        }/api/location/add-event`,
+                        {
+                            locationName: location,
+                            event: response.data._id,
+                        }
+                    );
+                    console.log(response);
+                });
         } catch (error) {
             console.log("Error: ", error);
         }
@@ -55,6 +68,14 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
         } catch (error) {
             console.log("Error: ", error);
         }
+        // try {
+        //     await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/location/add-event`, {
+        //         locationName: location,
+        //         event:
+        //     });
+        // } catch (error) {
+        //     console.log("Error: ", error);
+        // }
 
         console.log(
             `Event created for ${selectedMarker} on ${eventDate}. Desription: ${description}`

@@ -123,7 +123,7 @@ export default function Profile() {
                 </div>
               </div>
 
-              <div className="bg-textboxbg p-6 rounded-lg shadow-md pb-56">
+              <div className="bg-primary p-6 rounded-lg shadow-md pb-56">
                 <h2 className="text-2xl font-bold text-navy mb-4">
                   RECENT ACTIVITY
                 </h2>

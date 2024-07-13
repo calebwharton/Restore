@@ -68,7 +68,7 @@ const Login: React.FC<LoginProps> = () => {
                     )}
                     <button
                         onClick={handleSignIn}
-                        className="ml-auto bg-navy text-primary font-semibold px-6 py-2 rounded-xl mt-2"
+                        className="mx-auto bg-navy text-primary font-semibold px-6 py-2 rounded-xl mt-8"
                     >
                         SIGN IN
                     </button>

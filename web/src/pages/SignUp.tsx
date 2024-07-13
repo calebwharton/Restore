@@ -84,7 +84,7 @@ function SignUp() {
                     )}
                     <button
                         onClick={handleSignUp}
-                        className="ml-auto bg-navy text-primary font-semibold px-6 py-2 mt-2 rounded-xl"
+                        className="mx-auto bg-navy text-primary font-semibold px-6 py-2 mt-8 mb-4 rounded-xl"
                     >
                         SIGN UP
                     </button>

@@ -60,7 +60,7 @@ const Home: React.FC = () => {
                     for (const eventId of poi.events) {
                         const event = await getEvent(eventId);
                         if (event) {
-                            console.log(event);
+                            // console.log(event);
 
                             eventDates.push(event.date);
                         }
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
                         (date) => date >= today
                     );
 
-                    console.log(upcomingEvents);
+                    // console.log(upcomingEvents);
 
                     if (upcomingEvents.length > 0) {
                         const nearestEventDate = upcomingEvents.reduce((a, b) =>

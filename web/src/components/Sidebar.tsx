@@ -226,7 +226,9 @@ const Sidebar: React.FC<SidebarProps> = ({
                         <h2 className="text-xl font-bold ml-2">
                             Create Event for {selectedMarker}
                         </h2>
-                        <h2 className="text-xl font-bold mt-4 ml-2">ACTIVITY NAME</h2>
+                        <h2 className="text-xl font-bold mt-4 ml-2">
+                            ACTIVITY NAME
+                        </h2>
                         <input
                             type="text"
                             className="w-full bg-primary py-2 px-4 rounded-xl"
@@ -242,7 +244,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                             className="w-full bg-primary py-2 px-4 rounded-xl"
                             value={eventDate}
                             onChange={(e) => setEventDate(e.target.value)}
-                            
                         />
                         <h2 className="text-xl font-bold mt-4 ml-2">
                             DESCRIPTION
@@ -251,7 +252,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                             className="w-full bg-primary py-2 px-4 rounded-xl"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Please enter the event time and a brief description." 
+                            placeholder="Please enter the event time and a brief description."
                         />
                         <button
                             className="bg-navy text-primary font-semibold text-sxl w-full rounded-xl py-3 mt-auto"
@@ -291,8 +292,9 @@ const Sidebar: React.FC<SidebarProps> = ({
                             {selectedMarker}
                         </h1>
 
-                        {events.map((event) => (
+                        {events.map((event, key) => (
                             <div
+                                key={key}
                                 className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
                                 onClick={() => handleClickEvent(event._id)}
                             >

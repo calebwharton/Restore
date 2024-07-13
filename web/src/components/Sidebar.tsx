@@ -65,6 +65,14 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
         } catch (error) {
             console.log("Error: ", error);
         }
+        // try {
+        //     await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/location/add-event`, {
+        //         locationName: location,
+        //         event:
+        //     });
+        // } catch (error) {
+        //     console.log("Error: ", error);
+        // }
 
 
         console.log(

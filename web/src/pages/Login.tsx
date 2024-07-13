@@ -81,7 +81,11 @@ const Login: React.FC<LoginProps> = () => {
                 </p>
                 {/* <GoogleSigninBtn /> */}
             </div>
-            <div className="admin-login-right-items bg-navy h-screen"></div>
+            <div className="admin-login-right-items bg-navy h-screen">
+                <div className="center-turtle">
+                    <img src={turtle} alt="" />
+                </div>
+            </div>
         </div>
     );
 };

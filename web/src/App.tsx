@@ -3,10 +3,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState } from "react";
 import Home from "@pages/Home";
 import Login from "@pages/Login";
-import Store from "@pages/Events";
+import Events from "@pages/Events";
 import SignUp from "@pages/SignUp";
 import About from "@pages/About";
 import Profile from "@pages/Profile";
+import Leaderboard from "@pages/Leaderboard"
+
 
 const router = createBrowserRouter([
     {
@@ -22,8 +24,8 @@ const router = createBrowserRouter([
         element: <SignUp />,
     },
     {
-        path: "/store",
-        element: <Store />,
+        path: "/events",
+        element: <Events />,
     },
     {
         path: "/profile",
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About />,
     },
+    {
+        path: "leaderboard",
+        element: <Leaderboard /> 
+    }
 ]);
 
 export default function App() {

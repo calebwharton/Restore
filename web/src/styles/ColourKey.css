@@ -1,0 +1,55 @@
+.color-key-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;   
+    background-color: white;
+    z-index: 1000;
+}
+
+.color-key-container.collapsed .color-key-content {
+    display: none;
+}
+
+.collapse-button {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: yellow;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.color-key-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.color-key-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.color-flag {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.no-event {
+    background-color: gray;
+}
+
+.event-soon {
+    background-color: red;
+}
+
+.event-later {
+    background-color: blue;
+}

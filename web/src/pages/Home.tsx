@@ -6,6 +6,7 @@ import {
     Map,
     Pin,
 } from "@vis.gl/react-google-maps";
+import ColourKey from "@components/ColourKey";
 
 const Home: React.FC = () => {
     const newZealandBounds = {
@@ -59,6 +60,7 @@ const Home: React.FC = () => {
     return (
         <div>
             <NavBar />
+            <ColourKey />
             <div className="flex w-full">
                 {selectedMarker && (
                     <div className="sidebar w-1/3 bg-accent text-white">
@@ -87,7 +89,7 @@ const Home: React.FC = () => {
                                 onClick={() => handleMarkerClick(poi.key)}
                             >
                                 <Pin
-                                    background={"#FBBC04"}
+                                    background={"#c2c2c2"}
                                     glyphColor={"#000"}
                                     borderColor={"#000"}
                                 />

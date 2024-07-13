@@ -32,6 +32,7 @@ export default function NavBar() {
                     <Link to="/profile" className="text-offwhite">
                         <AccountCircleIcon fontSize="large" />
                     </Link>
+                    <Link to="/login">Login</Link>
                 </div>
             </nav>
         </div>

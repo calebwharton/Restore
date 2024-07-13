@@ -67,6 +67,10 @@ eventRoutes.post("/add-attendee", async (req:Request, res:Response) =>{
         if (!event){
             return res.status(404).json({ message: 'Invalid credentials' });
         }
+        // Check if the user is already an attendee
+        if (event.atendees.includes(userId)) {
+            return res.status(400).json({ message: 'User already added as an attendee' });
+        }
 
         event.atendees.push(userId)
         await event.save()

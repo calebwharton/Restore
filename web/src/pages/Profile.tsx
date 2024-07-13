@@ -1,10 +1,6 @@
 import Footer from "@components/Footer";
 import NavBar from "../components/NavBar";
-import getUserData from "../components/getUserData";
 export default function Profile() {
-    const id = localStorage.getItem("user_id");
-    const userData = getUserData(id);
-    console.log(userData)
     return (
         <div>
             <NavBar />

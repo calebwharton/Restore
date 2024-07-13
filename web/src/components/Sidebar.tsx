@@ -226,7 +226,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                         <h2 className="text-xl font-bold ml-2">
                             Create Event for {selectedMarker}
                         </h2>
-                        <h2 className="text-xl font-bold mt-4 ml-2">TITLE</h2>
+                        <h2 className="text-xl font-bold mt-4 ml-2">ACTIVITY NAME</h2>
                         <input
                             type="text"
                             className="w-full bg-primary py-2 px-4 rounded-xl"
@@ -242,6 +242,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                             className="w-full bg-primary py-2 px-4 rounded-xl"
                             value={eventDate}
                             onChange={(e) => setEventDate(e.target.value)}
+                            
                         />
                         <h2 className="text-xl font-bold mt-4 ml-2">
                             DESCRIPTION
@@ -250,9 +251,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                             className="w-full bg-primary py-2 px-4 rounded-xl"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Please enter the event time and a brief description." 
                         />
                         <button
-                            className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                            className="bg-navy text-primary font-semibold text-sxl w-full rounded-xl py-3 mt-auto"
                             onClick={handleSaveEvent}
                         >
                             POST

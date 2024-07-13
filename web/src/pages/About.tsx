@@ -6,7 +6,7 @@ import Trust from "../assets/trust.png";
 
 const About: React.FC = () => {
     return (
-        <div>
+        <div className="flex flex-col h-screen">
             <NavBar />
             <div className="mx-20 mt-10">
                 <h1 className="font-title text-4xl text-navy">OUR GOAL</h1>

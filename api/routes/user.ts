@@ -7,12 +7,15 @@ const userRoutes = Router();
 
 
 userRoutes.post("/", async (req: Request, res: Response) => {
-  
+  const {name, phoneNumber, email, password} = req.body
+  console.log(name, phoneNumber, email, password);
   try {
     //creating new user
     const newUser = new User({
-      email: req.body.email,
-      password: req.body.password,
+      name: name,
+      phoneNumber: phoneNumber,
+      email: email,
+      password: password,
     })
 
     //uploading new user to mongo
@@ -48,6 +51,25 @@ userRoutes.post('/check-user', async (req: Request, res: Response) => {
   }
 });
 
+//update feature, updates user balance, itemsList, charities, cart
+userRoutes.post("/add-event", async (req: Request, res: Response) =>{
+  const {id, eventId} = req.body
+  console.log(id, eventId)
+  try{
+    const user = await User.findById(id);
+    if (!user) {
+      //if no such user 
+      return res.status(404).json({ message: 'Invalid credentials' });
+    }
+    user.eventsList.push(eventId);
+    // console.log(user)
+    await user.save()
+    
+    res.status(200).json(user); 
+  }catch (error: any){
+    res.status(400).json({ message: error.message });
+  }
+})
 
 
 export default userRoutes;

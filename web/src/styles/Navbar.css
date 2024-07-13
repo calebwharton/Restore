@@ -16,5 +16,6 @@
     display: inline-block;
 }
 
-
-
+.bar {
+    width: 99%;
+}

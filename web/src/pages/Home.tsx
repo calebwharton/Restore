@@ -8,7 +8,6 @@ import {
     Map,
     Pin,
 } from "@vis.gl/react-google-maps";
-import ColourKey from "@components/ColourKey";
 
 const Home: React.FC = () => {
     const newZealandBounds = {
@@ -59,7 +58,6 @@ const Home: React.FC = () => {
     return (
         <div>
             <NavBar />
-            <ColourKey />
             <div className="flex w-full h-screen">
             <Sidebar selectedMarker={selectedMarker} />
 

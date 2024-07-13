@@ -48,7 +48,7 @@ export default function Profile() {
                             <h3 className="events-created">Events Created: {data.eventsCreated.length}</h3>                            
                             <h3 className="profile-points">Points: {data.points}</h3>
                             <h3 className="profile-email">Email: {data.email}</h3>
-                            <h3 className="profile-phone">Phone: {data.phone}</h3>
+                            <h3 className="profile-phone">Phone: {data.phoneNumber}</h3>
                         </div>
                     </div>
                 ) : (

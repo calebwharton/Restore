@@ -21,6 +21,7 @@ interface LocationData {
 
 const Home: React.FC = () => {
     const [data, setData] = useState<LocationData[]>([]);
+    const [selectedData, setSelectedData] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,10 +47,15 @@ const Home: React.FC = () => {
         east: 176.5,
     };
 
-    type Poi = { key: string; location: google.maps.LatLngLiteral };
+    type Poi = {
+        key: string;
+        location: google.maps.LatLngLiteral;
+        events: string[];
+    };
     const locations: Poi[] = data.map((item) => ({
         key: item.locationName,
         location: { lat: item.longitude, lng: item.latitude },
+        events: item.events,
     }));
 
     // const locations: Poi[] = [
@@ -59,9 +65,10 @@ const Home: React.FC = () => {
     const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
     const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
 
-    const handleMarkerClick = (key: string) => {
+    const handleMarkerClick = (key: string, events: string[]) => {
         setSelectedMarker(key);
         setSidebarVisible(true);
+        setSelectedData(events);
     };
 
     return (
@@ -69,7 +76,7 @@ const Home: React.FC = () => {
             <NavBarHome />
             <ColourKey />
             <div className="flex w-full h-screen">
-                <Sidebar selectedMarker={selectedMarker} />
+                <Sidebar selectedMarker={selectedMarker} data={selectedData} />
 
                 <div className={`${isSidebarVisible ? "w-full" : "w-full"}`}>
                     {/* <p>{data[0].latitude}</p> */}
@@ -92,7 +99,9 @@ const Home: React.FC = () => {
                                 <AdvancedMarker
                                     key={poi.key}
                                     position={poi.location}
-                                    onClick={() => handleMarkerClick(poi.key)}
+                                    onClick={() =>
+                                        handleMarkerClick(poi.key, poi.events)
+                                    }
                                 >
                                     <Pin
                                         background={"#FBBC04"}

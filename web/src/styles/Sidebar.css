@@ -1,34 +1,33 @@
 .sidebar {
-    position: relative; 
-    background-color: #AACCCC; 
-    color: #364652; 
+    position: relative;
+    background-color: #aacccc;
+    color: #364652;
     padding: 20px;
-    height: 100%; 
+    height: 100%;
     width: 40%;
-    overflow: hidden; 
+    overflow: hidden;
     text-align: center;
-    
 }
 
 .sidebar::before {
-    content: ""; 
+    content: "";
     position: absolute;
     top: 20px;
     left: 20px;
-    right: 20px;                            
-    bottom: -20px;
-    background-color: #FFF6E4; 
-    z-index: 0; 
-    border-radius: 10px; 
+    right: 20px;
+    bottom: 20px;
+    /* background-color: #fff6e4; */
+    z-index: 0;
+    border-radius: 10px;
 }
 
 .sidebar > * {
-    position: relative; 
-    z-index: 1; 
+    position: relative;
+    z-index: 1;
 }
 
 .button {
-    display: block; 
+    display: block;
     width: 70%; /* Set a fixed width for the buttons */
     margin: 10px auto; /* Center the buttons */
     padding: 6px; /* Adjust padding */
@@ -37,21 +36,19 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 0.9rem; /* Adjust font size */
-
 }
 
 .interest-button {
-    background-color: #E7F3F3;
+    background-color: #e7f3f3;
     color: #364652;
-
 }
 
 .interest-button.active {
-    background-color: #ffc107; 
+    background-color: #ffc107;
 }
 
 .create-event-button {
-    background-color: #ffffff; 
+    background-color: #ffffff;
     color: #364652;
 }
 
@@ -83,13 +80,12 @@
 .title-line {
     border: none;
     height: 4px;
-    background-color: #364652;;
+    background-color: #364652;
     margin-bottom: 20px;
     margin-top: 15px;
-    
 }
 
-.welcome-message{
+.welcome-message {
     font-weight: 600;
     font-size: 2rem;
     color: #364652;

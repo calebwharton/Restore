@@ -36,7 +36,7 @@ export default function Profile() {
   return (
     <div className="bg-offwhite min-h-screen">
       <NavBar />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-28">
         <h1 className="text-4xl font-bold text-navy mb-4">DASHBOARD</h1>
         <hr className="border-t-4 border-navy mb-8" />
         {data ? (
@@ -123,7 +123,7 @@ export default function Profile() {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-textboxbg p-6 rounded-lg shadow-md pb-56">
                 <h2 className="text-2xl font-bold text-navy mb-4">
                   RECENT ACTIVITY
                 </h2>
@@ -148,11 +148,13 @@ export default function Profile() {
               </div>
             </div>
             <div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-primary p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-navy mb-4">
                   ACHIEVEMENTS
                 </h2>
-                {/* Add content for achievements */}
+                <div className="pb-96">
+                  {/* Add content for achievements */}
+                </div>
               </div>
             </div>
           </div>

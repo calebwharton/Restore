@@ -34,25 +34,24 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
     const handleSaveEvent = async () => {
         // Save event logic
         try {
-             await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
+            await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
                 eventName: title,
                 description: description,
                 place: location,
                 eventCreator: user,
-            })
+            });
         } catch (error) {
             console.log("Error: ", error);
         }
 
-
-
         try {
             await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,{
+                `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,
+                {
                     id: localStorage.getItem("user_id"),
-                    eventId: title
-            },
-        )
+                    eventId: title,
+                }
+            );
         } catch (error) {
             console.log("Error: ", error);
         }
@@ -68,12 +67,38 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
         setIsCreatingEvent(false);
     }
 
-    function handleClickEvent() {
-        setSelectedEvent("Event");
+    async function handleClickEvent(event: string) {
+        // setSelectedEvent("Event");
+
+        try {
+            const response = await axios.get(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${event}`
+            );
+            console.log(response.data);
+            setSelectedEvent(response.data);
+        } catch (error) {
+            console.log("Error: ", error);
+        }
     }
     function goBackFromEvent() {
         setSelectedEvent("");
     }
+
+    const handleInterestedEvent = async () => {
+        try {
+            await axios.post(
+                `${
+                    import.meta.env.VITE_SERVER_URL
+                }/api/user/add-event-attended`,
+                {
+                    id: localStorage.getItem("user_id"),
+                    eventId: selectedEvent._id,
+                }
+            );
+        } catch (error) {
+            console.log("Error: ", error);
+        }
+    };
 
     useEffect(() => {
         if (selectedMarker) {
@@ -135,10 +160,18 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                         >
                             Back
                         </button>
-                        EVENT
+                        <div className="bg-primary h-full w-full mb-6 p-4 rounded-xl">
+                            <h1 className="font-bold text-xl ">
+                                {selectedEvent.eventName}
+                            </h1>
+                            <p>{selectedMarker}</p>
+                            <p>{selectedEvent.date}</p>
+                            <p>{selectedEvent.description}</p>
+                        </div>
+
                         <button
                             className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
-                            onClick={handleCreateEvent}
+                            onClick={handleInterestedEvent}
                         >
                             INTERESTED
                         </button>
@@ -152,7 +185,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                         {data.map((event) => (
                             <div
                                 className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
-                                onClick={handleClickEvent}
+                                onClick={() => handleClickEvent(event)}
                             >
                                 <h2 className="text-xl font-bold">{event}</h2>
                                 <p>Location</p>
@@ -160,7 +193,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                             </div>
                         ))}
 
-                        <div
+                        {/* <div
                             className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
                             onClick={handleClickEvent}
                         >
@@ -179,7 +212,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                             </h2>
                             <p>Location</p>
                             <p>Date</p>
-                        </div>
+                        </div> */}
                         {isUser && (
                             <button
                                 className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"

@@ -104,9 +104,9 @@ const Home: React.FC = () => {
                                     }
                                 >
                                     <Pin
-                                        background={"#FBBC04"}
-                                        glyphColor={"#000"}
-                                        borderColor={"#000"}
+                                        background={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
+                                        glyphColor={"#FFFFFF"}
+                                        borderColor={poi.events && poi.events.length > 0 ? "#ff4a4a" : "#c2c2c2"}
                                     />
                                 </AdvancedMarker>
                             ))}

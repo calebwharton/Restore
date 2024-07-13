@@ -34,6 +34,7 @@ locationRoutes.post("/add-event", async (req: Request, res: Response) =>{
             return res.status(404).json({ message: 'Invalid credentials' });
         }
         location.events.push(event)
+        console.log("Added to location")
         await location.save()
         res.status(200).json(location); 
         

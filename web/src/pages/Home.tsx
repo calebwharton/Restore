@@ -1,7 +1,5 @@
-// import Banner from "@components/Banner";
-// import HowReStoreWorks from "@components/HowReStoreWorks";
+import React, { useState } from "react";
 import NavBar from "@components/NavBar";
-import React from "react";
 import {
     AdvancedMarker,
     APIProvider,
@@ -48,58 +46,56 @@ const Home: React.FC = () => {
         },
     ];
 
+    const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
+
+    const handleMarkerClick = (key: string) => {
+        setSelectedMarker(key);
+    };
+
+    const closeSidebar = () => {
+        setSelectedMarker(null);
+    };
+
     return (
         <div>
             <NavBar />
-            {/* <Banner />
-            <HowReStoreWorks /> */}
-            <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-                <Map
-                    style={{ width: "100%", height: "100vh" }}
-                    // styles={mapStyles}
-                    defaultCenter={{ lat: -36.848461, lng: 174.763336 }}
-                    defaultZoom={11}
-                    gestureHandling={"greedy"}
-                    disableDefaultUI={true}
-                    mapId={"f838f316061bfba4"}
-                    // mapTypeId={google.maps.MapTypeId.ROADMAP}
-                    restriction={{
-                        latLngBounds: newZealandBounds,
-                        strictBounds: false,
-                    }}
-                >
-                    <AdvancedMarker
-                        key="test"
-                        position={{ lat: -36.848461, lng: 174.763336 }}
+            <div className="flex">
+                {selectedMarker && (
+                    <div className="sidebar">
+                        <button onClick={closeSidebar}>Close</button>
+                        <h2>{selectedMarker}</h2>
+                        <p>Place information goes here...</p>
+                    </div>
+                )}
+                <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+                    <Map
+                        style={{ width: "100%", height: "100vh" }}
+                        defaultCenter={{ lat: -36.848461, lng: 174.763336 }}
+                        defaultZoom={11}
+                        gestureHandling={"greedy"}
+                        disableDefaultUI={true}
+                        mapId={"f838f316061bfba4"}
+                        restriction={{
+                            latLngBounds: newZealandBounds,
+                            strictBounds: false,
+                        }}
                     >
-                        <Pin
-                            background={"#FBBC04"}
-                            glyphColor={"#000"}
-                            borderColor={"#000"}
-                        />
-                    </AdvancedMarker>
-                    {locations.map((poi: Poi) => (
-                        <AdvancedMarker key={poi.key} position={poi.location}>
-                            <Pin
-                                background={"#FBBC04"}
-                                glyphColor={"#000"}
-                                borderColor={"#000"}
-                            />
-                        </AdvancedMarker>
-                    ))}
-                </Map>
-            </APIProvider>
-
-            {/* <div className="left-items">
-                <div className="our-story">
-                    <h1>Our Story</h1>
-                    <p>Blah Blah</p>
-                </div>
-                <button>Shop Now</button>
+                        {locations.map((poi: Poi) => (
+                            <AdvancedMarker
+                                key={poi.key}
+                                position={poi.location}
+                                onClick={() => handleMarkerClick(poi.key)}
+                            >
+                                <Pin
+                                    background={"#FBBC04"}
+                                    glyphColor={"#000"}
+                                    borderColor={"#000"}
+                                />
+                            </AdvancedMarker>
+                        ))}
+                    </Map>
+                </APIProvider>
             </div>
-            <div className="right-items">
-                <img src="hero.img" alt="hero image" />
-            </div> */}
         </div>
     );
 };

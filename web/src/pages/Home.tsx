@@ -13,7 +13,7 @@ import NavBarHome from "@components/NavBarHome";
 
 const Home: React.FC = () => {
     const newZealandBounds = {
-        north: -36.5,
+        north: -36.3,
         south: -37.5,
         west: 172.5,
         east: 176.5,

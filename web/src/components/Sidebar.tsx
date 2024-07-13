@@ -174,7 +174,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             setIsUser(true);
         }
         getEvents();
-    }, [selectedMarker]);
+    }, [selectedMarker, data]);
 
     return (
         <div className="sidebar">

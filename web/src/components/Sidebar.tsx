@@ -95,6 +95,15 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                     eventId: selectedEvent._id,
                 }
             );
+
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/add-atendee`,
+
+                {
+                    eventId: selectedEvent._id,
+                    userId: localStorage.getItem("user_id"),
+                }
+            );
         } catch (error) {
             console.log("Error: ", error);
         }

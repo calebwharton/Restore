@@ -99,7 +99,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         } catch (error) {
             console.log("Error: ", error);
         }
-            console.log(newEvent.data)
+        try {
+            console.log(newEvent.data);
 
             // add event to eventsCreated list of user
             await axios.post(
@@ -109,7 +110,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     eventId: newEvent.data._id,
                 }
             );
-            
+
             //add event to locattion
             await axios.post(
                 `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,
@@ -118,11 +119,9 @@ const Sidebar: React.FC<SidebarProps> = ({
                     eventid: newEvent.data._id,
                 }
             );
-
         } catch (error) {
             console.log("Error: ", error);
         }
-
 
         console.log(
             `Event created for ${selectedMarker} on ${eventDate}. Desription: ${description}`

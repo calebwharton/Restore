@@ -1,11 +1,13 @@
 import React from 'react';
 import NavBar from "@components/NavBar";
 import '../styles/profile.css';
+import Key from  "@components/ColourKey"
 
 function Profile() {
     return (
         <div className="profile-container">
             <NavBar />
+            <Key />
             <div className="profile-content">
                 <h1 className="profile-title">MY  ACCOUNT</h1>
                 <hr className="title-line" />

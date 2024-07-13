@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/AboutUs.css";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
-import Trust from "../assets/trust.png";
+import Turtle from "../assets/turtle.svg";
 
 const About: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const About: React.FC = () => {
           </div>
           <div className="mx-auto">
             {/* CHANGE THIS */}
-            <img src={Trust} alt="" />
+            <img src={Turtle} alt="" />
           </div>
           <div className = "p-64"></div>
         </div>

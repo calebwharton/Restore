@@ -59,9 +59,9 @@ const Home: React.FC = () => {
     return (
         <div>
             <NavBar />
-            <div className="flex">
+            <div className="flex w-full">
                 {selectedMarker && (
-                    <div className="sidebar">
+                    <div className="sidebar w-1/3 bg-accent text-white">
                         <button onClick={closeSidebar}>Close</button>
                         <h2>{selectedMarker}</h2>
                         <p>Place information goes here...</p>

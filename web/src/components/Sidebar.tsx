@@ -93,35 +93,55 @@ const Sidebar: React.FC<SidebarProps> = ({
                         }
                     );
 
+                    await axios.post(
+                        `${
+                            import.meta.env.VITE_SERVER_URL
+                        }/api/user/add-event-created`,
+                        {
+                            id: localStorage.getItem("user_id"),
+                            eventId: response.data._id,
+                        }
+                    );
+
+                    // await axios.post(
+                    //     `${
+                    //         import.meta.env.VITE_SERVER_URL
+                    //     }/api/location/add-event`,
+                    //     {
+                    //         locationName: response.data.place,
+                    //         eventid: response.data._id,
+                    //     }
+                    // );
+
                     console.log(response);
                 });
             onEventCreated();
         } catch (error) {
             console.log("Error: ", error);
         }
-        try {
-            console.log(newEvent.data);
+        // try {
+        //     console.log(newEvent.data);
 
-            // add event to eventsCreated list of user
-            await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,
-                {
-                    id: localStorage.getItem("user_id"),
-                    eventId: newEvent.data._id,
-                }
-            );
+        //     // add event to eventsCreated list of user
+        //     await axios.post(
+        //         `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,
+        //         {
+        //             id: localStorage.getItem("user_id"),
+        //             eventId: newEvent.data._id,
+        //         }
+        //     );
 
-            //add event to locattion
-            await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,
-                {
-                    locationName: newEvent.data.place,
-                    eventid: newEvent.data._id,
-                }
-            );
-        } catch (error) {
-            console.log("Error: ", error);
-        }
+        //     //add event to locattion
+        //     await axios.post(
+        //         `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,
+        //         {
+        //             locationName: newEvent.data.place,
+        //             eventid: newEvent.data._id,
+        //         }
+        //     );
+        // } catch (error) {
+        //     console.log("Error: ", error);
+        // }
 
         console.log(
             `Event created for ${selectedMarker} on ${eventDate}. Desription: ${description}`

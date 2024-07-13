@@ -105,18 +105,13 @@ const Sidebar: React.FC<SidebarProps> = ({
                         }
                     );
 
-                    // await axios.post(
-                    //     `${
-                    //         import.meta.env.VITE_SERVER_URL
-                    //     }/api/location/add-event`,
-                    //     {
-                    //         locationName: response.data.place,
-                    //         eventid: response.data._id,
-                    //     }
-                    // );
+
 
                     console.log(response);
                 });
+            setTitle("");
+            setEventDate("");
+            setDescription("");
             onEventCreated();
         } catch (error) {
             console.log("Error: ", error);

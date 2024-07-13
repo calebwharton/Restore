@@ -112,6 +112,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
     useEffect(() => {
         if (selectedMarker) {
             setLocation(selectedMarker);
+            setSelectedEvent("");
         }
         if (user) {
             setIsUser(true);

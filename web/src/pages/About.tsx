@@ -110,10 +110,15 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <button className="relative flex items-center justify-center h-12 w-32 sm:w-64 overflow-hidden bg-primary text-secondary font-bold py-6 px-6 mt-8 border-2 border-secondary rounded transition-all before:absolute before:top-0 before:left-0 before:h-full before:w-full before:rounded-full before:bg-secondary before:scale-0 before:transition-transform before:duration-500 before:ease-out hover:before:scale-150 hover:text-primary">
+
+          <div className="flex justify-center items-center mt-5">
+          <a href="/">
+          <button className="relative flex items-center justify-center h-14 w-32 sm:w-64 overflow-hidden bg-primary text-secondary font-bold px-6 mt-8 border-2 border-secondary rounded transition-all before:absolute before:top-0 before:left-0 before:h-full before:w-full before:rounded-full before:bg-secondary before:scale-0 before:transition-transform before:duration-500 before:ease-out hover:before:scale-150 hover:text-primary">
             <TravelExploreIcon className="relative z-10 mr-2" />
             <span className="relative z-10">GET STARTED</span>
           </button>
+          </a>
+        </div>
         </div>
       </div>
 

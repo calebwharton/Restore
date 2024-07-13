@@ -18,6 +18,7 @@ export default {
                 secondary: "#779EBA",
                 accent: "#AACCCC",
                 offwhite: "#FFF6E4",
+                quietaccent: "#dfecec",
                 
             },
         },

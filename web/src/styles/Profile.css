@@ -3,12 +3,6 @@
     flex-direction: column;
 }
 
-.profile-content {
-    width: 93%;
-    margin-left: 50px;
-    margin-top: 15px;
-}
-
 .profile-title {
     font-size: 3em;
     font-weight: 1000;
@@ -38,28 +32,41 @@
     margin-left: 30px;
 }
 
-.profile-box {
-    margin-bottom: 15px;
+.relative {
+    position: relative;
 }
 
 .profile-label {
-    display: block;
-    font-size: 1em;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #364652;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 0 4px;
+    background-color: #fff;
+    color: #888;
+    font-size: 1rem;
+    transition: transform 0.2s, font-size 0.2s, top 0.2s;
+    pointer-events: none;
 }
 
 .profile-input {
     display: block;
     width: 100%;
-    padding: 10px;
-    font-size: 1em;
+    padding: 12px;
+    font-size: 1rem;
     color: #364652;
-    background-color: #f4f4f4;
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    pointer-events: none; /* To ensure the inputs are not editable */
+    outline: none;
+}
+
+.profile-input:focus + .profile-label,
+.profile-input:not(:placeholder-shown) + .profile-label {
+    transform: translateY(-24px);
+    font-size: 0.75rem;
+    top: -8px;
+    background-color: #fff;
+    padding: 0 4px;
 }
 
 .profile-name,

@@ -3,7 +3,6 @@ import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Profile.css";
-
 interface User {
     name: string;
     points: number;
@@ -12,11 +11,9 @@ interface User {
     eventsAttended: { name: string; date: string; location: string }[];
     eventsCreated: string[];
 }
-
 export default function Profile() {
     const [data, setData] = useState<User | null>(null);
     const userId = localStorage.getItem("user_id");
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,10 +27,8 @@ export default function Profile() {
                 // Handle error
             }
         };
-
         fetchData();
     }, []);
-
     return (
         <div className="bg-offwhite min-h-screen">
             <NavBar />
@@ -43,7 +38,7 @@ export default function Profile() {
                 {data ? (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="md:col-span-2">
-                            <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+                            <div className="bg-accent p-6 rounded-lg shadow-md mb-8">
                                 <h2 className="text-2xl font-bold text-navy mb-4">PERSONAL INFO</h2>
                                 <div className="space-y-4">
                                     <div>
@@ -53,7 +48,7 @@ export default function Profile() {
                                                 type="text"
                                                 readOnly
                                                 value={data.name}
-                                                className="block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                                                className="block w-full text-[#7c96a9] px-3 py-2 bg-quietaccent border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                             />
                                         </div>
                                     </div>
@@ -64,7 +59,7 @@ export default function Profile() {
                                                 type="text"
                                                 readOnly
                                                 value={data.email}
-                                                className="block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                                                className="block w-full text-[#7c96a9] px-3 py-2 bg-quietaccent border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                             />
                                         </div>
                                     </div>
@@ -75,25 +70,25 @@ export default function Profile() {
                                                 type="text"
                                                 readOnly
                                                 value={data.phone}
-                                                className="block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
+                                                className="block w-full text-[#7c96a9] px-3 py-2 bg-quietaccent border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                             />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+                            <div className="bg-accent p-6 rounded-lg shadow-md mb-8">
                                 <h2 className="text-2xl font-bold text-navy mb-4">STATISTICS</h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="text-center bg-gray-100 p-4 rounded-lg shadow">
-                                        <p className="text-3xl font-bold">{data.points}</p>
+                                    <div className="text-center bg-quietaccent p-4 rounded-lg shadow">
+                                        <p className="text-3xl font-bold text-[#7c96a9]">{data.points}</p>
                                         <p className="text-lg">POINTS</p>
                                     </div>
-                                    <div className="text-center bg-gray-100 p-4 rounded-lg shadow">
-                                        <p className="text-3xl font-bold">{data.eventsAttended.length}</p>
+                                    <div className="text-center bg-quietaccent p-4 rounded-lg shadow">
+                                        <p className="text-3xl font-bold text-[#7c96a9]">{data.eventsAttended.length}</p>
                                         <p className="text-lg">EVENTS ATTENDED</p>
                                     </div>
-                                    <div className="text-center bg-gray-100 p-4 rounded-lg shadow">
-                                        <p className="text-3xl font-bold">{data.eventsCreated.length}</p>
+                                    <div className="text-center bg-quietaccent p-4 rounded-lg shadow">
+                                        <p className="text-3xl font-bold text-[#7c96a9]">{data.eventsCreated.length}</p>
                                         <p className="text-lg">EVENTS CREATED</p>
                                     </div>
                                 </div>

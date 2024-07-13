@@ -14,13 +14,19 @@ import axios from "axios";
 interface SidebarProps {
     selectedMarker: string | null;
     data: string[] | [];
+    onEventCreated: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+    selectedMarker,
+    data,
+    onEventCreated,
+}) => {
     const [isCreatingEvent, setIsCreatingEvent] = useState(false);
     const [isUser, setIsUser] = useState(false);
     // const [isInterested, setIsInterested] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState("");
+    const [events, setEvents] = useState([]);
     const [eventDate, setEventDate] = useState("");
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
@@ -31,17 +37,68 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
         setIsCreatingEvent(true);
     };
 
+    // async function getEvent(id: string) {
+    //     try {
+    //         const event = await axios.post(
+    //             `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${id}`,
+    //             {
+    //                 eventName: title,
+    //                 description: description,
+    //                 place: location,
+    //                 eventCreator: user,
+    //             }
+    //         );
+    //         return event;
+    //     } catch (error) {
+    //         console.log("Error: ", error);
+    //     }
+    // }
+
+    const getEvents = async () => {
+        try {
+            const eventRequests = data.map(async (id) => {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${id}`
+                );
+                return response.data;
+            });
+
+            const events = await Promise.all(eventRequests);
+            console.log(events);
+            setEvents(events);
+        } catch (error) {
+            console.error("Error fetching events:", error);
+            return [];
+        }
+    };
+
     const handleSaveEvent = async () => {
         // create the event
         try {
-            const newEvent = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
-                eventName: title,
-                description: description,
-                place: location,
-                eventCreator: user,
-            })
+            await axios
+                .post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
+                    eventName: title,
+                    description: description,
+                    place: location,
+                    eventCreator: user,
+                })
+                .then(async (response) => {
+                    await axios.post(
+                        `${
+                            import.meta.env.VITE_SERVER_URL
+                        }/api/location/add-event`,
+                        {
+                            locationName: location,
+                            event: response.data._id,
+                        }
+                    );
 
-            
+                    console.log(response);
+                });
+            onEventCreated();
+        } catch (error) {
+            console.log("Error: ", error);
+        }
             console.log(newEvent.data)
 
             // add event to eventsCreated list of user
@@ -65,14 +122,6 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
         } catch (error) {
             console.log("Error: ", error);
         }
-        // try {
-        //     await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/location/add-event`, {
-        //         locationName: location,
-        //         event:
-        //     });
-        // } catch (error) {
-        //     console.log("Error: ", error);
-        // }
 
 
         console.log(
@@ -136,7 +185,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
         if (user) {
             setIsUser(true);
         }
-    }, [selectedMarker]);
+        getEvents();
+    }, [selectedMarker, data]);
 
     return (
         <div className="sidebar">
@@ -212,13 +262,15 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                             {selectedMarker}
                         </h1>
 
-                        {data.map((event) => (
+                        {events.map((event) => (
                             <div
                                 className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
-                                onClick={() => handleClickEvent(event)}
+                                onClick={() => handleClickEvent(event._id)}
                             >
-                                <h2 className="text-xl font-bold">{event}</h2>
-                                <p>Location</p>
+                                <h2 className="text-xl font-bold">
+                                    {event.eventName}
+                                </h2>
+                                <p>{event.place}</p>
                                 <p>Date</p>
                             </div>
                         ))}

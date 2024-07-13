@@ -19,7 +19,7 @@ export default {
                 gprimary: "#ABBA77",
                 gsecondary: "#E5ECC3",
                 navy: "#364652",
-                background: "#FFF6E4",
+                offwhite: "#FFF6E4",
                 accent: "#AACCCC",
 
             },

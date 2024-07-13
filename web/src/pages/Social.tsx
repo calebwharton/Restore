@@ -6,7 +6,7 @@ export default function Sell() {
     return (
         <div>
             <NavBar />
-            <p>This is the sell page</p>
+            <p>This is the social page</p>
         </div>
     );
 }

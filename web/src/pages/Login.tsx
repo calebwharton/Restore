@@ -62,13 +62,13 @@ const Login: React.FC<LoginProps> = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     {error && (
-                        <p className="text-red-500 text-sm mb-4 ml-2">
+                        <p className="text-red-500 text-sm mb-2 ml-2">
                             {error}
                         </p>
                     )}
                     <button
                         onClick={handleSignIn}
-                        className="ml-auto bg-navy text-primary font-semibold px-6 py-2 rounded-xl"
+                        className="ml-auto bg-navy text-primary font-semibold px-6 py-2 rounded-xl mt-2"
                     >
                         SIGN IN
                     </button>

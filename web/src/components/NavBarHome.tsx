@@ -40,7 +40,7 @@ export default function NavBarHome() {
                     </Link>
                     <Link to="/social" className="px-6">
                         <span className="menu-item text-offwhite text-lg">
-                            SOCIAL
+                            LEADERBOARD
                         </span>
                     </Link>
                 </div>

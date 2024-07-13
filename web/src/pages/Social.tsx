@@ -9,7 +9,7 @@ import bronze from "../assets/bronze.svg"
 
 
 interface User {
-    _id:string;
+    _id: string;
     name: string;
     totalAttended: number;
     points: number;
@@ -27,7 +27,8 @@ export default function Leaderboard() {
             const usersResponse = await axios.get(
                 `${import.meta.env.VITE_SERVER_URL}/api/user/get-all-users`
             );
-            setUsers(usersResponse.data.slice(0, 10));
+            const sortedUsers = usersResponse.data.sort((a: User, b: User) => b.points - a.points);
+            setUsers(sortedUsers.slice(0, 10));
         } catch (error) {
             console.error("Error fetching users:", error);
         }
@@ -47,25 +48,25 @@ export default function Leaderboard() {
                         <div className="column">ATTENDED</div>
                         <div className="column">POINTS</div>
                     </div>
-{users.length > 0 ? (
+                    {users.length > 0 ? (
                         <ul className="event-list">
                             {users.map((user: User, index: number) => (
                                 <li key={user._id} className={`board-row ${index === 0 ? 'rank-1' : ''}`}>
-                <div className="column">
-                    {index === 0 ? (
-                        <img src={trophy} alt="1st Place" className="trophy" />
-                    ) : index === 1 ? (
-                        <img src={silver} alt="2nd Place" className="trophy" />
-                    ) : index === 2 ? (
-                        <img src={bronze} alt="3rd Place" className="trophy" />
-                    ) : (
-                        index + 1
-                    )}
-                </div>
-                <div className="column">{user.name}</div>
-                <div className="column">{user.totalAttended}</div>
-                <div className="column">{user.points}</div>
-            </li>
+                                    <div className="column">
+                                        {index === 0 ? (
+                                            <img src={trophy} alt="1st Place" className="trophy" />
+                                        ) : index === 1 ? (
+                                            <img src={silver} alt="2nd Place" className="trophy" />
+                                        ) : index === 2 ? (
+                                            <img src={bronze} alt="3rd Place" className="trophy" />
+                                        ) : (
+                                            index + 1
+                                        )}
+                                    </div>
+                                    <div className="column">{user.name}</div>
+                                    <div className="column">{user.totalAttended}</div>
+                                    <div className="column">{user.points}</div>
+                                </li>
                             ))}
                         </ul>
                     ) : (

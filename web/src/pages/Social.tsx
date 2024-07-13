@@ -27,7 +27,7 @@ export default function Leaderboard() {
             const usersResponse = await axios.get(
                 `${import.meta.env.VITE_SERVER_URL}/api/user/get-all-users`
             );
-            setUsers(usersResponse.data);
+            setUsers(usersResponse.data.slice(0, 10));
         } catch (error) {
             console.error("Error fetching users:", error);
         }

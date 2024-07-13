@@ -6,6 +6,7 @@ import TurtleDark from "../assets/turtle-navy.svg";
 import CommunityImg from "../assets/community.svg";
 import EnviroImg from "../assets/enviro.svg";
 import RecycleImg from "../assets/recycle.svg";
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 const About: React.FC = () => {
   return (
@@ -101,6 +102,11 @@ const About: React.FC = () => {
               Join us in making a difference - one piece of trash at a time.
             </p>
           </div>
+
+          <button className="relative flex items-center justify-center h-12 w-32 sm:w-64 overflow-hidden bg-background text-accent font-bold py-6 px-6 mt-8 border border-accent rounded transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-accent before:duration-500 before:ease-out hover:before:h-56 hover:before:w-56 hover:text-white">
+              <TravelExploreIcon className="relative z-10 mr-2" />
+              <span className="relative z-10">GET STARTED</span>
+            </button>
         </div>
       </div>
       

@@ -1,23 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Sidebar.css";
+import axios from "axios";
 
 interface SidebarProps {
     selectedMarker: string | null;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
+ 
     const [isCreatingEvent, setIsCreatingEvent] = useState(false);
     // const [isInterested, setIsInterested] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState("");
     const [eventDate, setEventDate] = useState("");
+    const [title, setTitle] = useState("");
+    const [location, setLocation] = useState("");
+    const [description, setDescription] = useState("");
 
     const handleCreateEvent = () => {
         setIsCreatingEvent(true);
     };
 
-    const handleSaveEvent = () => {
+    const handleSaveEvent = async () => {
         // Save event logic
-        console.log(`Event created for ${selectedMarker} on ${eventDate}`);
+        const user = localStorage.getItem("user_id")
+        try{
+            
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/`,{
+                    eventName: title,
+                    description: description,
+                    place: location,
+                    eventCreator: user
+            },
+        )
+
+        }catch (error:any){
+            console.log("Error: ", error)
+        }
+
+        console.log(`Event created for ${selectedMarker} on ${eventDate}. Desription: ${description}`);
+
+
         setIsCreatingEvent(false);
     };
 
@@ -31,6 +54,12 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
     function goBackFromEvent() {
         setSelectedEvent("");
     }
+
+    useEffect(() =>{
+        if(selectedMarker){
+            setLocation(selectedMarker);
+        }
+    },[selectedMarker]);
 
     return (
         <div className="sidebar">
@@ -47,8 +76,11 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
                         <input
                             type="text"
                             className="w-full bg-primary py-2 px-4 rounded-xl"
-                            value={eventDate}
-                            onChange={(e) => setEventDate(e.target.value)}
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+                                // console.log(e.target.value)
+                            }}
                         />
                         <h2 className="text-xl font-bold mt-4 ml-2">DATE</h2>
                         <input
@@ -62,8 +94,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker }) => {
                         </h2>
                         <textarea
                             className="w-full bg-primary py-2 px-4 rounded-xl"
-                            value={eventDate}
-                            onChange={(e) => setEventDate(e.target.value)}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                         <button
                             className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"

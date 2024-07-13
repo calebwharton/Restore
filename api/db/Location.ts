@@ -5,6 +5,14 @@ const locationSchema = new Schema({
     type: String,
     required: true,
   },
+  longitude:{
+    type: String,
+    required: true
+  },
+  latitude: {
+    type: String,
+    required: true
+  },
     events: {
     type: [String],
     default: [],

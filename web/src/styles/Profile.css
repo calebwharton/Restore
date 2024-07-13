@@ -101,3 +101,9 @@
     background-color: #f4f4f4;
     font-weight: bold;
 }
+
+.custom-icon-size {
+    width: 64px !important;   /* Force width, ensuring override */
+    height: 64px !important;  /* Force height to match the width */
+    font-size: 64px !important; /* Force font size if your icons are font-based */
+}

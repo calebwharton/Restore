@@ -3,6 +3,11 @@ import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Profile.css";
+import PointIcon from '@mui/icons-material/Timeline';
+import AttendIcon from '@mui/icons-material/FmdGood';
+import CreateIcon from '@mui/icons-material/Create';
+
+
 interface User {
     name: string;
     points: number;
@@ -77,22 +82,34 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div className="bg-accent p-6 rounded-lg shadow-md mb-8">
-                                <h2 className="text-2xl font-bold text-navy mb-4">STATISTICS</h2>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="text-center bg-quietaccent p-4 rounded-lg shadow">
-                                        <p className="text-3xl font-bold text-[#7c96a9]">{data.points}</p>
-                                        <p className="text-lg">POINTS</p>
-                                    </div>
-                                    <div className="text-center bg-quietaccent p-4 rounded-lg shadow">
-                                        <p className="text-3xl font-bold text-[#7c96a9]">{data.eventsAttended.length}</p>
-                                        <p className="text-lg">EVENTS ATTENDED</p>
-                                    </div>
-                                    <div className="text-center bg-quietaccent p-4 rounded-lg shadow">
-                                        <p className="text-3xl font-bold text-[#7c96a9]">{data.eventsCreated.length}</p>
-                                        <p className="text-lg">EVENTS CREATED</p>
-                                    </div>
-                                </div>
-                            </div>
+    <h2 className="text-2xl font-bold text-navy mb-4">STATISTICS</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="text-center bg-quietaccent p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
+        <PointIcon className="text-navy custom-icon-size" />
+            <div>
+                <p className="text-3xl font-bold text-navy">{data.points}</p>
+                <p className="text-lg text-navy">POINTS COLLECTED</p>
+            </div>
+        </div>
+        <div className="text-center bg-quietaccent p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
+            <AttendIcon className="h-10 w-10 text-navy custom-icon-size" />
+            <div>
+                <p className="text-3xl font-bold text-navy">{data.eventsAttended.length}</p>
+                <p className="text-lg text-navy">EVENTS ATTENDED</p>
+            </div>
+        </div>
+        <div className="text-center bg-quietaccent p-4 rounded-lg shadow flex flex-row items-center justify-between space-x-4">
+            <CreateIcon className="h-10 w-10 text-navy custom-icon-size" />
+            <div>
+                <p className="text-3xl font-bold text-navy">{data.eventsCreated.length}</p>
+                <p className="text-lg text-navy">EVENTS CREATED</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
                             <div className="bg-white p-6 rounded-lg shadow-md">
                                 <h2 className="text-2xl font-bold text-navy mb-4">RECENT ACTIVITY</h2>
                                 <table className="w-full text-left">

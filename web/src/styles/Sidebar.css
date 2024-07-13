@@ -1,0 +1,66 @@
+/* Sidebar Styles */
+.sidebar {
+    background-color: #AACCCC; 
+    color: white; 
+    padding: 20px;
+    height: 100%; 
+    width: 40%;
+}
+
+button {
+    display: block; 
+    width: 100%; 
+    margin-top: 10px; 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.interest-button {
+    background-color: #E7F3F3;
+    color: #364652;
+}
+
+.interest-button.active {
+    background-color: #ffc107; 
+}
+
+.create-event-button {
+    background-color: #ffffff; 
+    color: #364652;
+}
+
+.event-form {
+    margin-top: 10px;
+}
+
+.event-form input {
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.event-form button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.beach-name {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #364652;
+}
+
+.title-line {
+    border: none;
+    height: 4px;
+    background-color: #364652;;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    
+}

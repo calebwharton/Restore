@@ -21,7 +21,11 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
-  eventsList: {
+  eventsAttended: {
+    type: [String],
+    default: [],
+  },
+  eventsCreated: {
     type: [String],
     default: [],
   }

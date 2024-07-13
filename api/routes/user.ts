@@ -5,7 +5,7 @@ import User from '../db/User';
 
 const userRoutes = Router();
 
-
+//create new user route
 userRoutes.post("/", async (req: Request, res: Response) => {
   const {name, phoneNumber, email, password} = req.body
   console.log(name, phoneNumber, email, password);
@@ -51,18 +51,40 @@ userRoutes.post('/check-user', async (req: Request, res: Response) => {
   }
 });
 
-//update feature, updates user balance, itemsList, charities, cart
-userRoutes.post("/add-event", async (req: Request, res: Response) =>{
+//eventsAttended, + points
+//need user id and event id
+userRoutes.post("/add-event-attended", async (req: Request, res: Response) =>{
   const {id, eventId} = req.body
-  console.log(id, eventId)
+
   try{
     const user = await User.findById(id);
     if (!user) {
       //if no such user 
       return res.status(404).json({ message: 'Invalid credentials' });
     }
-    user.eventsList.push(eventId);
-    // console.log(user)
+    user.eventsAttended.push(eventId);
+    user.points += 10
+    await user.save()
+    
+    res.status(200).json(user); 
+  }catch (error: any){
+    res.status(400).json({ message: error.message });
+  }
+})
+
+//eventsCreated + points
+//need user id and event id
+userRoutes.post("/add-event-created", async (req: Request, res: Response) =>{
+  const {id, eventId} = req.body
+
+  try{
+    const user = await User.findById(id);
+    if (!user) {
+      //if no such user 
+      return res.status(404).json({ message: 'Invalid credentials' });
+    }
+    user.eventsCreated.push(eventId);
+    user.points += 20
     await user.save()
     
     res.status(200).json(user); 

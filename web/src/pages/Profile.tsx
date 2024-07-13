@@ -14,7 +14,7 @@ interface User {
     points: number;
     email: string;
     phoneNumber: string;
-    eventsAttended: string[];
+    eventsAttended: { name: string; date: string; location: string }[];
     eventsCreated: string[];
 }
 export default function Profile() {

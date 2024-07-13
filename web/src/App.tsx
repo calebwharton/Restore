@@ -7,7 +7,7 @@ import Events from "@pages/Events";
 import SignUp from "@pages/SignUp";
 import About from "@pages/About";
 import Profile from "@pages/Profile";
-import Leaderboard from "@pages/Leaderboard"
+import Social from "@pages/Social"
 
 
 const router = createBrowserRouter([
@@ -36,8 +36,8 @@ const router = createBrowserRouter([
         element: <About />,
     },
     {
-        path: "leaderboard",
-        element: <Leaderboard /> 
+        path: "/social",
+        element: <Social /> 
     }
 ]);
 

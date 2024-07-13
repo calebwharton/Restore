@@ -291,20 +291,31 @@ const Sidebar: React.FC<SidebarProps> = ({
                         <h1 className="text-2xl font-bold mb-6">
                             {selectedMarker}
                         </h1>
-
-                        {events.map((event, key) => (
-                            <div
-                                key={key}
-                                className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
-                                onClick={() => handleClickEvent(event._id)}
-                            >
-                                <h2 className="text-xl font-bold">
-                                    {event.eventName}
-                                </h2>
-                                <p>{event.place}</p>
-                                <p>{formatDate(event.date)}</p>
+                        {events.length == 0 ? (
+                            <div>
+                                <p className="font-semibold text-xl">
+                                    Currently, there are no community volunteer
+                                    cleaning events scheduled at this location.
+                                    Check back later or consider hosting one
+                                    yourself
+                                </p>
                             </div>
-                        ))}
+                        ) : (
+                            events.map((event, key) => (
+                                <div
+                                    key={key}
+                                    className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
+                                    onClick={() => handleClickEvent(event._id)}
+                                >
+                                    <h2 className="text-xl font-bold">
+                                        {event.eventName}
+                                    </h2>
+                                    <p>{event.place}</p>
+                                    <p>{formatDate(event.date)}</p>
+                                </div>
+                            ))
+                        )}
+                        {}
 
                         {/* <div
                             className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"

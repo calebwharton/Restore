@@ -87,7 +87,7 @@ const Home: React.FC = () => {
                                 onClick={() => handleMarkerClick(poi.key)}
                             >
                                 <Pin
-                                    background={"#FBBC04"}
+                                    background={"#c2c2c2"}
                                     glyphColor={"#000"}
                                     borderColor={"#000"}
                                 />

@@ -1,12 +1,14 @@
 .color-key-container {
-    border: 1px solid #ccc;
-    padding: 10px;
+    border: 2px solid #364652;
+    padding: 1px;
+    padding-top: 50px;
     width: 200px;
     position: fixed;
     bottom: 20px; 
     right: 20px;   
-    background-color: white;
+    background-color: #FFF6E4;
     z-index: 1000;
+    border-radius: 15px;
 }
 
 .color-key-container.collapsed .color-key-content {
@@ -15,41 +17,17 @@
 
 .collapse-button {
     position: absolute;
-    top: 5px;
+    top: 0; 
     left: 5px;
-    background: yellow;
-    color: white;
+    color: #364652;
     border: none;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.color-key-content {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-}
-
-.color-key-item {
+    padding: 0; 
+    padding-left: 2px;
+    height: 50px; 
+    width: 100%; 
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    cursor: pointer;
+    background: none; 
 }
 
-.color-flag {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-}
-
-.no-event {
-    background-color: gray;
-}
-
-.event-soon {
-    background-color: red;
-}
-
-.event-later {
-    background-color: blue;
-}

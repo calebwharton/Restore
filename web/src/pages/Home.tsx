@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NavBar from "@components/NavBar";
+// import NavBar from "@components/NavBar";
 import Sidebar from "@components/Sidebar";
-import ColourKey from "@components/ColourKey"
+import ColourKey from "@components/ColourKey";
 
 import {
     AdvancedMarker,
@@ -9,6 +9,7 @@ import {
     Map,
     Pin,
 } from "@vis.gl/react-google-maps";
+import NavBarHome from "@components/NavBarHome";
 
 const Home: React.FC = () => {
     const newZealandBounds = {
@@ -22,26 +23,32 @@ const Home: React.FC = () => {
     const locations: Poi[] = [
         { key: "Orewa Beach", location: { lat: -36.5875, lng: 174.6942 } },
         { key: "Takapuna Beach", location: { lat: -36.7863, lng: 174.7744 } },
-        { key: "Okahu Bay Beach", location: { lat: -36.8460, lng: 174.7960 } },
-        { key: "Mission Bay Auckland", location: { lat: -36.8480, lng: 174.8290 } },
-        { key: "Kendall Bay Beach", location: { lat: -36.8210, lng: 174.7470 } },
+        { key: "Okahu Bay Beach", location: { lat: -36.846, lng: 174.796 } },
+        {
+            key: "Mission Bay Auckland",
+            location: { lat: -36.848, lng: 174.829 },
+        },
+        { key: "Kendall Bay Beach", location: { lat: -36.821, lng: 174.747 } },
         { key: "Long Bay Beach", location: { lat: -36.6833, lng: 174.7489 } },
-        { key: "Green Bay Beach", location: { lat: -36.9270, lng: 174.6960 } },
-        { key: "Point Chevalier Beach", location: { lat: -36.8573, lng: 174.7026 } },
-        { key: "Devonport Beach", location: { lat: -36.8300, lng: 174.7930 } },
-        { key: "Herne Bay Beach", location: { lat: -36.8360, lng: 174.7380 } },
-        { key: "Campbells Bay Beach", location: { lat: -36.7490, lng: 174.7590 } },
-        { key: "Charcoal Bay Beach", location: { lat: -36.8290, lng: 174.7280 } },
-        { key: "Mairangi Bay Beach", location: { lat: -36.7330, lng: 174.7490 } },
-        { key: "Sentinel Rd Beach", location: { lat: -36.8360, lng: 174.7380 } },
-        { key: "St Leonards Bay", location: { lat: -36.8270, lng: 174.7510 } },
-        { key: "Narrow Neck Beach", location: { lat: -36.8180, lng: 174.7990 } },
-        { key: "Ladies Bay Beach", location: { lat: -36.8520, lng: 174.8690 } },
-        { key: "St Heliers Beach", location: { lat: -36.8520, lng: 174.8690 } },
-        { key: "Chelsea Bay Beach", location: { lat: -36.8240, lng: 174.7190 } },
-        
-        
-
+        { key: "Green Bay Beach", location: { lat: -36.927, lng: 174.696 } },
+        {
+            key: "Point Chevalier Beach",
+            location: { lat: -36.8573, lng: 174.7026 },
+        },
+        { key: "Devonport Beach", location: { lat: -36.83, lng: 174.793 } },
+        { key: "Herne Bay Beach", location: { lat: -36.836, lng: 174.738 } },
+        {
+            key: "Campbells Bay Beach",
+            location: { lat: -36.749, lng: 174.759 },
+        },
+        { key: "Charcoal Bay Beach", location: { lat: -36.829, lng: 174.728 } },
+        { key: "Mairangi Bay Beach", location: { lat: -36.733, lng: 174.749 } },
+        { key: "Sentinel Rd Beach", location: { lat: -36.836, lng: 174.738 } },
+        { key: "St Leonards Bay", location: { lat: -36.827, lng: 174.751 } },
+        { key: "Narrow Neck Beach", location: { lat: -36.818, lng: 174.799 } },
+        { key: "Ladies Bay Beach", location: { lat: -36.852, lng: 174.869 } },
+        { key: "St Heliers Beach", location: { lat: -36.852, lng: 174.869 } },
+        { key: "Chelsea Bay Beach", location: { lat: -36.824, lng: 174.719 } },
     ];
 
     const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
@@ -52,19 +59,21 @@ const Home: React.FC = () => {
         setSidebarVisible(true);
     };
 
-    const toggleSidebar = () => {
-        setSidebarVisible(!isSidebarVisible);
-    };
+    // const toggleSidebar = () => {
+    //     setSidebarVisible(!isSidebarVisible);
+    // };
 
     return (
         <div>
-            <NavBar />
+            <NavBarHome />
             <ColourKey />
             <div className="flex w-full h-screen">
-            <Sidebar selectedMarker={selectedMarker} />
+                <Sidebar selectedMarker={selectedMarker} />
 
                 <div className={`${isSidebarVisible ? "w-full" : "w-full"}`}>
-                    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+                    <APIProvider
+                        apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+                    >
                         <Map
                             style={{ width: "100%", height: "100vh" }}
                             defaultCenter={{ lat: -36.848461, lng: 174.763336 }}

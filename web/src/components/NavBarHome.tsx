@@ -16,6 +16,7 @@ export default function NavBarHome() {
     function handleLogOut() {
         localStorage.removeItem("user_id");
         navigate("/");
+        window.location.reload();
     }
 
     return (

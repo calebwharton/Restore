@@ -178,13 +178,14 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedMarker, data }) => {
                             <p>{selectedEvent.date}</p>
                             <p>{selectedEvent.description}</p>
                         </div>
-
-                        <button
-                            className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
-                            onClick={handleInterestedEvent}
-                        >
-                            INTERESTED
-                        </button>
+                        {isUser && (
+                            <button
+                                className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                onClick={handleInterestedEvent}
+                            >
+                                INTERESTED
+                            </button>
+                        )}
                     </div>
                 ) : (
                     <div className="flex flex-col h-full text-left">

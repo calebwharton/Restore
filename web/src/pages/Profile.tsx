@@ -17,8 +17,17 @@ interface User {
     eventsAttended: string[];
     eventsCreated: string[];
 }
+
+interface Event {
+  eventName: string;
+  date: string;
+  place: string;
+}
+
+
 export default function Profile() {
   const [data, setData] = useState<User | null>(null);
+  const [attendedEvents, setAttendedEvents] = useState<Event[]>([]);
   const userId = localStorage.getItem("user_id");
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +37,17 @@ export default function Profile() {
         );
         setData(response.data);
         console.log(response.data);
+
+        const eventRequests = response.data.eventsAttended.map(async (eventId: string) => {
+          const eventResponse = await axios.get(
+            `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${eventId}`
+          );
+          return eventResponse.data;
+        });
+
+        const events = await Promise.all(eventRequests);
+        setAttendedEvents(events);
+
       } catch (err) {
         console.error("Error fetching data:", err);
         // Handle error
@@ -140,9 +160,9 @@ export default function Profile() {
                   <tbody>
                     {data.eventsAttended.map((event, index) => (
                       <tr key={index} className="border-t">
-                        <td className="px-4 py-2">{event.name}</td>
-                        <td className="px-4 py-2">{event.date}</td>
-                        <td className="px-4 py-2">{event.location}</td>
+                        <td className="px-4 py-2">{event.eventName}</td>
+                        <td className="px-4 py-2">{new Date(event.date).toLocaleDateString()}</td>
+                        <td className="px-4 py-2">{event.place}</td>
                       </tr>
                     ))}
                   </tbody>

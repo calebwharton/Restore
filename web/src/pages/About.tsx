@@ -2,48 +2,111 @@ import React from "react";
 import "../styles/AboutUs.css";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
-import Trust from "../assets/trust.png";
+import TurtleDark from "../assets/turtle-navy.svg";
+import CommunityImg from "../assets/community.svg";
+import EnviroImg from "../assets/enviro.svg";
+import RecycleImg from "../assets/recycle.svg";
 
 const About: React.FC = () => {
-    return (
-        <div className="flex flex-col h-screen">
-            <NavBar />
-            <div className="mx-20 mt-10">
-                <h1 className="font-title text-4xl text-navy">OUR GOAL</h1>
-                <div className="border-t-4 w-full mb-10 border-navy rounded-xl" />
-                <div className="grid grid-cols-2">
-                    <div className="text-navy text-2xl overflow-hidden">
-                        <p>
-                            Restore is a dedicated social network for beach
-                            cleanups. Restore is designed to empower communities
-                            by making it easier for people to create, join, and
-                            promote cleanup events at their local beaches,
-                            fostering real change in local communities.
-                        </p>
-                        <br />
-                        {/* <p>
-                            When you shop with us, the proceeds from every sale
-                            go directly to supporting charities. Sellers are not
-                            just decluttering- they're actively contributing to
-                            a greater cause, earning virtual coins with each
-                            sale. These coins can be used for discounts on
-                            future purchases, making sustainable shopping even
-                            more rewarding.
-                        </p>
-                        <br /> */}
-                        <p>
-                            Join us in making a difference - one item at a time.
-                        </p>
-                    </div>
-                    <div className="mx-auto">
-                        {/* CHANGE THIS */}
-                        <img src={Trust} alt="" />
-                    </div>
-                </div>
+  return (
+    <div className="bg-offwhite">
+      <NavBar />
+      <div className="mx-20 mt-10">
+        <h1 className="font-title text-4xl text-navy">OUR GOAL</h1>
+        <div className="border-t-4 w-full mb-10 border-navy rounded-xl" />
+        <div className="flex flex-col items-center justify-center text-center text-navy text-2xl overflow-hidden pb-28 pt-4">
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center px-4 w-full max-w-6xl gap-8">
+              {/* Empowering Communities */}
+              <div
+                className="p-8 mx-auto bg-primary rounded-3xl shadow-xl border-4 text-center flex flex-col items-center flex-none"
+                style={{ width: "330px", margin: "0.5rem" }}
+              >
+                <img
+                  src={CommunityImg}
+                  alt="Empowering Communities"
+                  style={{
+                    width: "400px", 
+                    height: "auto",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                  className="mb-3"
+                />
+                <h3 className="text-2xl font-bold mb-4 text-navy">
+                Empowering Communities
+                </h3>
+                <p className="text-navy text-lg">
+                Connect and collaborate with local volunteers committed to keeping our beaches clean.
+                </p>
+              </div>
+              
+              {/* Driving Environmental Change */}
+              <div
+                className="pt-4 pb-8 px-8 mx-auto bg-primary rounded-3xl shadow-xl border-4 text-center flex flex-col items-center flex-none"
+                style={{ width: "330px", margin: "0.5rem", paddingTop: "-100px" }}
+              >
+                <img
+                  src={EnviroImg}
+                  alt="Driving Environmental Change"
+                  style={{
+                    width: "400px", 
+                    height: "auto",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                  className="mb-3"
+                />
+                <h3 className="text-2xl font-bold mb-4 text-navy">
+                Driving Environmental Change
+                </h3>
+                <p className="text-navy text-lg">
+                Make a positive impact on our ecosystems by participating in targeted cleanups.
+                </p>
+              </div>
+              {/* Simplifying Cleanups */}
+              <div
+                className="p-8 mx-auto bg-primary rounded-3xl shadow-xl border-4  text-center flex flex-col items-center flex-none"
+                style={{ width: "330px", margin: "0.5rem" }}
+              >
+                <img
+                  src={RecycleImg}
+                  alt="Simplifying Cleanups"
+                  style={{
+                    width: "400px", 
+                    height: "auto",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                  className="mb-3"
+                />
+                <h3 className="text-2xl font-bold mb-4 text-navy">
+                Simplifying Cleanups
+                </h3>
+                <p className="text-navy text-lg">
+                Effortlessly organise or join beach cleanup events through our easy navigation in just a few clicks.
+                </p>
+              </div>
             </div>
-            <Footer />
+          </div>
+          <div className="lg:w-[1000px] md:w-[600px] pt-14">
+            <p>
+              Restore is a dedicated social network focused on beach cleanups.
+              Our platform empowers communities by simplifying the process of
+              creating, joining, and promoting cleanup events at local beaches,
+              driving meaningful change to local environments.
+            </p>
+            <br />
+            <p>
+              Join us in making a difference - one piece of trash at a time.
+            </p>
+          </div>
         </div>
-    );
+      </div>
+      
+      <Footer />
+    </div>
+  );
 };
 
 export default About;

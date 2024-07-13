@@ -7,8 +7,9 @@ import Events from "@pages/Events";
 import SignUp from "@pages/SignUp";
 import About from "@pages/About";
 import Profile from "@pages/Profile";
-import Social from "@pages/Social"
-
+import Social from "@pages/Social";
+import Leaderboard from "@pages/Leaderboard";
+import CreateEvent from "@pages/CreateEvent";
 
 const router = createBrowserRouter([
     {
@@ -37,8 +38,16 @@ const router = createBrowserRouter([
     },
     {
         path: "/social",
-        element: <Social /> 
-    }
+        element: <Social />,
+    },
+    {
+        path: "/leaderboard",
+        element: <Leaderboard />,
+    },
+    {
+        path: "/createevent",
+        element: <CreateEvent />,
+    },
 ]);
 
 export default function App() {

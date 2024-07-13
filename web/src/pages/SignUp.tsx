@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleSigninBtn from "@components/sign-in-button";
 import "../styles/login.css";
 
@@ -10,11 +10,11 @@ function SignUp() {
 
     return (
         <div className="admin-login-outer background-admin-login bg-primary">
-            <div className="admin-login-left-items">
-                <h1 className="passport-title-admin-login font-title">
+            <div className="admin-login-left-items text-navy">
+                <h1 className="passport-title-admin-login font-title text-navy">
                     ReStore
                 </h1>
-                <h2 className="dashboard-title-admin-login">
+                <h2 className="dashboard-title-admin-login text-navy">
                     Reuse, Reduce, ReStore
                 </h2>
                 <div className="sign-in-form">
@@ -29,10 +29,15 @@ function SignUp() {
                         className="input-field"
                     />
                 </div>
-                Sign Up
+                <p className="mb-6">
+                    Have an account?{" "}
+                    <Link className="underline" to="/login">
+                        Login
+                    </Link>
+                </p>
                 <GoogleSigninBtn onClick={handleSignInClick} />
             </div>
-            <div className="admin-login-right-items bg-gprimary h-screen"></div>
+            <div className="admin-login-right-items bg-navy h-screen"></div>
         </div>
     );
 }

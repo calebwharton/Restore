@@ -8,7 +8,7 @@ interface User {
     name: string;
     points: number;
     email: string;
-    phone: string;
+    phoneNumber: string;
     eventsAttended: string[];
     eventsCreated: string[];
 }

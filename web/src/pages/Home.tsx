@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ColourKey from "../components/ColourKey";
+import Points from "../components/Points"
 import {
     AdvancedMarker,
     APIProvider,
@@ -140,6 +141,7 @@ const Home: React.FC = () => {
     return (
         <div>
             <NavBarHome />
+            <Points />
             <ColourKey />
             <div className="flex w-full h-screen">
                 <Sidebar

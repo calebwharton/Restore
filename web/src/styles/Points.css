@@ -1,0 +1,44 @@
+.color-key-container {
+    padding: 1px;
+    padding-top: 50px;
+    width: 200px;
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;   
+    background-color: #fffaf1;
+    z-index: 1000;
+    border-radius: 15px;
+}
+
+.color-key-container-new {
+    padding: 1px;
+    padding-top: 50px;
+    width: 290px;
+    position: fixed;
+    top: 100px; 
+    right: 20px;   
+    background-color: #fffaf1;
+    z-index: 1000;
+    border-radius: 15px;
+}
+
+.color-key-container.collapsed .color-key-content {
+    display: none;
+}
+
+.collapse-button {
+    position: absolute;
+    top: 0; 
+    left: 5px;
+    color: #364652;
+    border: none;
+    padding: 0; 
+    padding-left: 2px;
+    height: 50px; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: none; 
+}
+

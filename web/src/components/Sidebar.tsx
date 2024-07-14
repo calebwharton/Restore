@@ -116,7 +116,9 @@ const Sidebar: React.FC<SidebarProps> = ({
     const handleInterestedEvent = async () => {
         try {
             await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-attended`,
+                `${
+                    import.meta.env.VITE_SERVER_URL
+                }/api/user/add-event-attended`,
                 {
                     id: localStorage.getItem("user_id"),
                     eventId: selectedEvent._id,
@@ -301,10 +303,14 @@ const Sidebar: React.FC<SidebarProps> = ({
                     </div>
                 )
             ) : (
-                <div>
-                    <h2 className="text-xl font-bold mb-4">
-                        Select a marker to view events.
-                    </h2>
+                <div className="flex h-full welcome-message flex-col">
+                    <div className="bg-primary px-6 py-12 my-auto rounded-xl">
+                        <h2 className="font-title">Welcome to Restore</h2>
+                        <p className="text-sm">Reduce, Reuse, Restore</p>
+                        <p className="text-base mt-3">
+                            Click on markers to start!
+                        </p>
+                    </div>
                 </div>
             )}
         </div>

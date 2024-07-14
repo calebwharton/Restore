@@ -6,6 +6,9 @@ import "../styles/Profile.css";
 import PointIcon from "@mui/icons-material/Timeline";
 import AttendIcon from "@mui/icons-material/FmdGood";
 import CreateIcon from "@mui/icons-material/Create";
+import One from "../assets/one.png";
+import Two from "../assets/two.png";
+import Three from "../assets/three.png";
 
 interface User {
     name: string;
@@ -250,7 +253,37 @@ export default function Profile() {
                                 <h2 className="text-2xl font-bold text-navy mb-4">
                                     ACHIEVEMENTS
                                 </h2>
-                                <div className="pb-96">
+                                <div className="pb-96 grid grid-cols-2">
+                                    <div className="col-span-1 mx-auto items-center text-center">
+                                        <img
+                                            src={Three}
+                                            className="w-32 mx-auto"
+                                            alt=""
+                                        />
+                                        <p className="text-navy text-center font-semibold">
+                                            50 Points
+                                        </p>
+                                    </div>
+                                    <div className="col-span-1 mx-auto">
+                                        <img
+                                            src={One}
+                                            className="w-32 mx-auto"
+                                            alt=""
+                                        />
+                                        <p className="text-navy text-center font-semibold">
+                                            100 Points
+                                        </p>
+                                    </div>
+                                    <div className="col-span-1 mx-auto">
+                                        <img
+                                            src={Two}
+                                            className="w-32 mx-auto"
+                                            alt=""
+                                        />
+                                        <p className="text-navy text-center font-semibold">
+                                            200 Points
+                                        </p>
+                                    </div>
                                     {/* Add content for achievements */}
                                 </div>
                             </div>

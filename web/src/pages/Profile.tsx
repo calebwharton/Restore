@@ -254,36 +254,50 @@ export default function Profile() {
                                     ACHIEVEMENTS
                                 </h2>
                                 <div className="pb-96 grid grid-cols-2">
-                                    <div className="col-span-1 mx-auto items-center text-center">
-                                        <img
-                                            src={Three}
-                                            className="w-32 mx-auto"
-                                            alt=""
-                                        />
-                                        <p className="text-navy text-center font-semibold">
-                                            50 Points
-                                        </p>
-                                    </div>
-                                    <div className="col-span-1 mx-auto">
-                                        <img
-                                            src={One}
-                                            className="w-32 mx-auto"
-                                            alt=""
-                                        />
-                                        <p className="text-navy text-center font-semibold">
-                                            100 Points
-                                        </p>
-                                    </div>
-                                    <div className="col-span-1 mx-auto">
-                                        <img
-                                            src={Two}
-                                            className="w-32 mx-auto"
-                                            alt=""
-                                        />
-                                        <p className="text-navy text-center font-semibold">
-                                            200 Points
-                                        </p>
-                                    </div>
+                                    {data.points >= 50 ? (
+                                        <div className="col-span-1 mx-auto items-center text-center">
+                                            <img
+                                                src={Three}
+                                                className="w-32 mx-auto"
+                                                alt=""
+                                            />
+                                            <p className="text-navy text-center font-semibold">
+                                                50 Points
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <div></div>
+                                    )}
+
+                                    {data.points >= 100 ? (
+                                        <div className="col-span-1 mx-auto">
+                                            <img
+                                                src={One}
+                                                className="w-32 mx-auto"
+                                                alt=""
+                                            />
+                                            <p className="text-navy text-center font-semibold">
+                                                100 Points
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <div></div>
+                                    )}
+                                    {data.points >= 200 ? (
+                                        <div className="col-span-1 mx-auto">
+                                            <img
+                                                src={Two}
+                                                className="w-32 mx-auto"
+                                                alt=""
+                                            />
+                                            <p className="text-navy text-center font-semibold">
+                                                200 Points
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <div></div>
+                                    )}
+
                                     {/* Add content for achievements */}
                                 </div>
                             </div>

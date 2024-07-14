@@ -186,6 +186,8 @@ const Sidebar: React.FC<SidebarProps> = ({
                     userId: localStorage.getItem("user_id"),
                 }
             );
+
+            onEventCreated();
         } catch (error) {
             console.log("Error: ", error);
         }
@@ -214,6 +216,22 @@ const Sidebar: React.FC<SidebarProps> = ({
         }
         getEvents();
     }, [selectedMarker, data]);
+
+    async function handleOptOut() {
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/remove-attendee`,
+
+                {
+                    eventId: selectedEvent._id,
+                    userId: localStorage.getItem("user_id"),
+                }
+            );
+            onEventCreated();
+        } catch (error) {
+            console.log("Error: ", error);
+        }
+    }
 
     return (
         <div className="sidebar">
@@ -277,14 +295,24 @@ const Sidebar: React.FC<SidebarProps> = ({
                             <p>{formatDate(selectedEvent.date)}</p>
                             <p>{selectedEvent.description}</p>
                         </div>
-                        {isUser && (
-                            <button
-                                className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
-                                onClick={handleInterestedEvent}
-                            >
-                                INTERESTED
-                            </button>
-                        )}
+                        {isUser &&
+                            (selectedEvent.atendees.includes(user) ? (
+                                // User is attending
+                                <button
+                                    className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                    onClick={handleOptOut}
+                                >
+                                    Opt Out
+                                </button>
+                            ) : (
+                                // User is not attending, show the interested button
+                                <button
+                                    className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                    onClick={handleInterestedEvent}
+                                >
+                                    Attend Event!
+                                </button>
+                            ))}
                     </div>
                 ) : (
                     <div className="flex flex-col h-full text-left">

@@ -83,11 +83,11 @@ const Home: React.FC = () => {
                         );
 
                         if (daysUntilEvent < 7) {
-                            pinBackground = "#0096ff"; // Blue for events less than a week away
-                            pinBorderColor = "#0096ff"; // Blue for events less than a week away
+                            pinBackground = "#ff4a4a"; // Blue for events less than a week away
+                            pinBorderColor = "#ff4a4a"; // Blue for events less than a week away
                         } else {
-                            pinBackground = "#ff4a4a"; // Red for events more than a week away
-                            pinBorderColor = "#ff4a4a"; // Red for events more than a week away
+                            pinBackground = "#0096ff"; // Red for events more than a week away
+                            pinBorderColor = "#0096ff"; // Red for events more than a week away
                         }
                     }
                 }

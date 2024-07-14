@@ -299,7 +299,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                             (selectedEvent.atendees.includes(user) ? (
                                 // User is attending
                                 <button
-                                    className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                    className="bg-gray-600 text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
                                     onClick={handleOptOut}
                                 >
                                     Opt Out
@@ -307,7 +307,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                             ) : (
                                 // User is not attending, show the interested button
                                 <button
-                                    className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                    className="bg-navy hover:bg-gray-600 text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
                                     onClick={handleInterestedEvent}
                                 >
                                     Attend Event!

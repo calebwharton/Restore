@@ -378,8 +378,9 @@ const Sidebar: React.FC<SidebarProps> = ({
             ) : (
                 <div className="flex h-full welcome-message">
                     <div className="bg-primary px-6 py-12 my-auto rounded-xl">
-                        <h2 className="font-title">Welcome to ReSTORE</h2>
-                        <p className="text-sm">Reuse, Reduce, ReStore</p>
+                        <h2 className="font-title">Welcome to Restore</h2>
+                        <p className="text-sm">Reduce, Reuse, Restore</p>
+                        <p className="text-base mt-3">Click on markers to start!</p>
                     </div>
                 </div>
             )}

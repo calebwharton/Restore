@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Sidebar.css";
 import axios from "axios";
+import turtle2 from "../assets/Turtle-home.png"
 
 interface SidebarProps {
     selectedMarker: string | null;
@@ -303,8 +304,11 @@ const Sidebar: React.FC<SidebarProps> = ({
                     </div>
                 )
             ) : (
-                <div className="flex h-full welcome-message flex-col">
-                    <div className="bg-primary px-6 py-12 my-auto rounded-xl">
+                <div className="flex h-full welcome-message flex-col items-center">
+                   <div className="centerbar-turtle flex justify-center ml-10 mt-10 mb-5">
+                        <img src={turtle2} alt="Turtle" className="self-center" />
+                    </div>
+                    <div className="bg-primary px-6 py-8 rounded-xl text-center">
                         <h2 className="font-title">Welcome to Restore</h2>
                         <p className="text-sm">Reduce, Reuse, Restore</p>
                         <p className="text-base mt-3">

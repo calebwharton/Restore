@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Sidebar.css";
 import axios from "axios";
+import turtle from "../assets/Turtle_1.png"
 
 // interface LocationData {
 //     _id: string;
@@ -376,7 +377,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                     </div>
                 )
             ) : (
-                <div className="flex h-full welcome-message">
+                <div className="flex h-full welcome-message flex-col">
+                    <div className="center-turtle">
+                    <img src={turtle} alt="" />
+                </div>
                     <div className="bg-primary px-6 py-12 my-auto rounded-xl">
                         <h2 className="font-title">Welcome to Restore</h2>
                         <p className="text-sm">Reduce, Reuse, Restore</p>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import GoogleSigninBtn from "@components/sign-in-button";
 import "../styles/login.css";
 import axios from "axios";
+import turtle from "../assets/Turtle_1.png"
 
 interface LoginProps {}
 
@@ -44,7 +45,7 @@ const Login: React.FC<LoginProps> = () => {
                     ReStore
                 </h1>
                 <h2 className="dashboard-title-admin-login text-navy">
-                    Reuse, Reduce, ReStore
+                    Reduce, Reuse, Restore
                 </h2>
                 <div className="sign-in-form">
                     <input
@@ -81,7 +82,11 @@ const Login: React.FC<LoginProps> = () => {
                 </p>
                 {/* <GoogleSigninBtn /> */}
             </div>
-            <div className="admin-login-right-items bg-navy h-screen"></div>
+            <div className="admin-login-right-items bg-navy h-screen">
+                <div className="center-turtle">
+                    <img src={turtle} alt="" />
+                </div>
+            </div>
         </div>
     );
 };

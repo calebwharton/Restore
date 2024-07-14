@@ -101,3 +101,14 @@
     color: #364652;
     margin: 30px;
 }
+
+
+.center-turtle { 
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}

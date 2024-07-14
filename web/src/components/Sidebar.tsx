@@ -2,15 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../styles/Sidebar.css";
 import axios from "axios";
 
-// interface LocationData {
-//     _id: string;
-//     locationName: string;
-//     longitude: number;
-//     latitude: number;
-//     events: string[]; // Adjust as per actual structure
-//     __v: number;
-// }
-
 interface SidebarProps {
     selectedMarker: string | null;
     data: string[] | [];
@@ -24,35 +15,19 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
     const [isCreatingEvent, setIsCreatingEvent] = useState(false);
     const [isUser, setIsUser] = useState(false);
-    // const [isInterested, setIsInterested] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState("");
     const [events, setEvents] = useState([]);
     const [eventDate, setEventDate] = useState("");
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
     const user = localStorage.getItem("user_id");
 
     const handleCreateEvent = () => {
         setIsCreatingEvent(true);
     };
-
-    // async function getEvent(id: string) {
-    //     try {
-    //         const event = await axios.post(
-    //             `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${id}`,
-    //             {
-    //                 eventName: title,
-    //                 description: description,
-    //                 place: location,
-    //                 eventCreator: user,
-    //             }
-    //         );
-    //         return event;
-    //     } catch (error) {
-    //         console.log("Error: ", error);
-    //     }
-    // }
 
     const getEvents = async () => {
         try {
@@ -74,39 +49,35 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     const handleSaveEvent = async () => {
         const eventDateObject = new Date(eventDate);
-        // create the event
         try {
-            await axios
-                .post(`${import.meta.env.VITE_SERVER_URL}/api/event/`, {
+            const response = await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/`,
+                {
                     eventName: title,
                     description: description,
                     place: location,
                     date: eventDateObject,
                     eventCreator: user,
-                })
-                .then(async (response) => {
-                    await axios.post(
-                        `${
-                            import.meta.env.VITE_SERVER_URL
-                        }/api/location/add-event`,
-                        {
-                            locationName: location,
-                            event: response.data._id,
-                        }
-                    );
+                }
+            );
 
-                    await axios.post(
-                        `${
-                            import.meta.env.VITE_SERVER_URL
-                        }/api/user/add-event-created`,
-                        {
-                            id: localStorage.getItem("user_id"),
-                            eventId: response.data._id,
-                        }
-                    );
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,
+                {
+                    locationName: location,
+                    event: response.data._id,
+                }
+            );
 
-                    console.log(response);
-                });
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,
+                {
+                    id: localStorage.getItem("user_id"),
+                    eventId: response.data._id,
+                }
+            );
+
+            console.log(response);
             setTitle("");
             setEventDate("");
             setDescription("");
@@ -114,32 +85,9 @@ const Sidebar: React.FC<SidebarProps> = ({
         } catch (error) {
             console.log("Error: ", error);
         }
-        // try {
-        //     console.log(newEvent.data);
-
-        //     // add event to eventsCreated list of user
-        //     await axios.post(
-        //         `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-created`,
-        //         {
-        //             id: localStorage.getItem("user_id"),
-        //             eventId: newEvent.data._id,
-        //         }
-        //     );
-
-        //     //add event to locattion
-        //     await axios.post(
-        //         `${import.meta.env.VITE_SERVER_URL}/api/location/add-event`,
-        //         {
-        //             locationName: newEvent.data.place,
-        //             eventid: newEvent.data._id,
-        //         }
-        //     );
-        // } catch (error) {
-        //     console.log("Error: ", error);
-        // }
 
         console.log(
-            `Event created for ${selectedMarker} on ${eventDate}. Desription: ${description}`
+            `Event created for ${selectedMarker} on ${eventDate}. Description: ${description}`
         );
 
         setIsCreatingEvent(false);
@@ -150,8 +98,6 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
 
     async function handleClickEvent(event: string) {
-        // setSelectedEvent("Event");
-
         try {
             const response = await axios.get(
                 `${import.meta.env.VITE_SERVER_URL}/api/event/byid/${event}`
@@ -162,6 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             console.log("Error: ", error);
         }
     }
+
     function goBackFromEvent() {
         setSelectedEvent("");
     }
@@ -169,9 +116,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     const handleInterestedEvent = async () => {
         try {
             await axios.post(
-                `${
-                    import.meta.env.VITE_SERVER_URL
-                }/api/user/add-event-attended`,
+                `${import.meta.env.VITE_SERVER_URL}/api/user/add-event-attended`,
                 {
                     id: localStorage.getItem("user_id"),
                     eventId: selectedEvent._id,
@@ -180,12 +125,15 @@ const Sidebar: React.FC<SidebarProps> = ({
 
             await axios.post(
                 `${import.meta.env.VITE_SERVER_URL}/api/event/add-attendee`,
-
                 {
                     eventId: selectedEvent._id,
                     userId: localStorage.getItem("user_id"),
                 }
             );
+
+            setPopupMessage("You have successfully attended the event!");
+            setShowPopup(true);
+            setTimeout(() => setShowPopup(false), 3000);
 
             onEventCreated();
         } catch (error) {
@@ -193,16 +141,30 @@ const Sidebar: React.FC<SidebarProps> = ({
         }
     };
 
+    async function handleOptOut() {
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/event/remove-attendee`,
+                {
+                    eventId: selectedEvent._id,
+                    userId: localStorage.getItem("user_id"),
+                }
+            );
+
+            setPopupMessage("You have successfully opted out of the event.");
+            setShowPopup(true);
+            setTimeout(() => setShowPopup(false), 3000);
+
+            onEventCreated();
+        } catch (error) {
+            console.log("Error: ", error);
+        }
+    }
+
     function formatDate(dateString) {
-        // Create a new Date object from the input string
         const date = new Date(dateString);
-
-        // Define options for toLocaleDateString
         const options = { day: "numeric", month: "long", year: "numeric" };
-
-        // Format the date
         const formattedDate = date.toLocaleDateString("en-GB", options);
-
         return formattedDate;
     }
 
@@ -217,24 +179,13 @@ const Sidebar: React.FC<SidebarProps> = ({
         getEvents();
     }, [selectedMarker, data]);
 
-    async function handleOptOut() {
-        try {
-            await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}/api/event/remove-attendee`,
-
-                {
-                    eventId: selectedEvent._id,
-                    userId: localStorage.getItem("user_id"),
-                }
-            );
-            onEventCreated();
-        } catch (error) {
-            console.log("Error: ", error);
-        }
-    }
-
     return (
         <div className="sidebar">
+            {showPopup && (
+                <div className="popup">
+                    <p className="pop">{popupMessage}</p>
+                </div>
+            )}
             {selectedMarker ? (
                 isCreatingEvent ? (
                     <div className="flex flex-col h-full w-full text-left">
@@ -253,7 +204,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                             value={title}
                             onChange={(e) => {
                                 setTitle(e.target.value);
-                                // console.log(e.target.value)
                             }}
                         />
                         <h2 className="text-xl font-bold mt-4 ml-2">DATE</h2>
@@ -273,7 +223,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                             placeholder="Please enter the event time and a brief description."
                         />
                         <button
-                            className="bg-navy text-primary font-semibold text-sxl w-full rounded-xl py-3 mt-auto"
+                            className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
                             onClick={handleSaveEvent}
                         >
                             POST
@@ -297,7 +247,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                         </div>
                         {isUser &&
                             (selectedEvent.atendees.includes(user) ? (
-                                // User is attending
                                 <button
                                     className="bg-gray-600 text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
                                     onClick={handleOptOut}
@@ -305,7 +254,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                                     Opt Out
                                 </button>
                             ) : (
-                                // User is not attending, show the interested button
                                 <button
                                     className="bg-navy hover:bg-gray-600 text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
                                     onClick={handleInterestedEvent}
@@ -338,50 +286,25 @@ const Sidebar: React.FC<SidebarProps> = ({
                                     <h2 className="text-xl font-bold">
                                         {event.eventName}
                                     </h2>
-                                    <p>{event.place}</p>
                                     <p>{formatDate(event.date)}</p>
                                 </div>
                             ))
                         )}
-                        {}
-
-                        {/* <div
-                            className="text-left bg-primary mb-2 p-4 rounded-xl font-semibold  hover:cursor-pointer"
-                            onClick={handleClickEvent}
-                        >
-                            <h2 className="text-xl font-bold">
-                                {selectedMarker}
-                            </h2>
-                            <p>Location</p>
-                            <p>Date</p>
-                        </div>
-                        <div
-                            className="text-left bg-primary p-4 rounded-xl font-semibold hover:cursor-pointer"
-                            onClick={handleClickEvent}
-                        >
-                            <h2 className="text-xl font-bold">
-                                {selectedMarker}
-                            </h2>
-                            <p>Location</p>
-                            <p>Date</p>
-                        </div> */}
-                        {isUser && (
+                        <div className="mt-auto flex flex-col gap-2">
                             <button
-                                className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3 mt-auto"
+                                className="bg-navy text-primary font-semibold text-xl w-full rounded-xl py-3"
                                 onClick={handleCreateEvent}
                             >
-                                CREATE
+                                Create Event
                             </button>
-                        )}
+                        </div>
                     </div>
                 )
             ) : (
-                <div className="flex h-full welcome-message flex-col">
-                    <div className="bg-primary px-6 py-12 my-auto rounded-xl">
-                        <h2 className="font-title">Welcome to Restore</h2>
-                        <p className="text-sm">Reduce, Reuse, Restore</p>
-                        <p className="text-base mt-3">Click on markers to start!</p>
-                    </div>
+                <div>
+                    <h2 className="text-xl font-bold mb-4">
+                        Select a marker to view events.
+                    </h2>
                 </div>
             )}
         </div>

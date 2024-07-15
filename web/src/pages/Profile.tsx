@@ -253,7 +253,7 @@ export default function Profile() {
                                 <h2 className="text-2xl font-bold text-navy mb-4">
                                     ACHIEVEMENTS
                                 </h2>
-                                <div className="pb-96 grid grid-cols-2">
+                                <div className="pb-36 grid grid-cols-2">
                                     {data.points >= 50 ? (
                                         <div className="col-span-1 mx-auto items-center text-center">
                                             <img

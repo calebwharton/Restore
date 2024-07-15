@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ColourKey from "../components/ColourKey";
-import Points from "../components/Points"
+import Points from "../components/Points";
 import {
     AdvancedMarker,
     APIProvider,
@@ -10,7 +10,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import NavBarHome from "../components/NavBarHome";
 import axios from "axios";
-import { differenceInDays, parseISO } from "date-fns";
+import { differenceInDays } from "date-fns";
 
 interface LocationData {
     _id: string;

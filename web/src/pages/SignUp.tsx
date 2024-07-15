@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import axios from "axios";
 import { useState } from "react";
-import turtle from "../assets/Turtle_1.png"
+import turtle from "../assets/Turtle_1.png";
 
 function SignUp() {
     const [username, setUsername] = useState("");
@@ -11,9 +11,6 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    // const handleSignInClick = () => {
-    //     navigate("/sign-in");
-    // };
 
     const handleSignUp = async () => {
         if (username && password) {
@@ -47,7 +44,7 @@ function SignUp() {
                     ReStore
                 </h1>
                 <h2 className="dashboard-title-admin-login text-navy">
-                Reduce, Reuse, Restore
+                    Reduce, Reuse, Restore
                 </h2>
                 <div className="sign-in-form">
                     <input
@@ -96,10 +93,9 @@ function SignUp() {
                         Login
                     </Link>
                 </p>
-                {/* <GoogleSigninBtn onClick={handleSignInClick} /> */}
             </div>
             <div className="admin-login-right-items bg-navy h-screen">
-            <div className="center-turtle">
+                <div className="center-turtle">
                     <img src={turtle} alt="" />
                 </div>
             </div>

@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import GoogleSigninBtn from "@components/sign-in-button";
-import "../styles/login.css";
 import axios from "axios";
-import turtle from "../assets/Turtle_1.png"
+import turtle from "../assets/Turtle_1.png";
+import "../styles/login.css";
 
 interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
-    // const history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -80,7 +78,6 @@ const Login: React.FC<LoginProps> = () => {
                         SignUp
                     </Link>
                 </p>
-                {/* <GoogleSigninBtn /> */}
             </div>
             <div className="admin-login-right-items bg-navy h-screen">
                 <div className="center-turtle">

@@ -297,8 +297,6 @@ export default function Profile() {
                                     ) : (
                                         <div></div>
                                     )}
-
-                                    {/* Add content for achievements */}
                                 </div>
                             </div>
                         </div>

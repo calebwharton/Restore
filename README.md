@@ -5,6 +5,6 @@ Braincells Team Members:
 - Rithvik Sharma
 - Connie Ding
 - Justin Huang
-- Oorja Ghandi
+- Oorja Gandhi
 - Nancy Wei
 - Caleb Wharton

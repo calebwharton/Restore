@@ -64,7 +64,7 @@ export default function Leaderboard() {
                                         )}
                                     </div>
                                     <div className="column">{user.name}</div>
-                                    <div className="column">{user.totalAttended}</div>
+                                    <div className="column">{user.eventsAttended.length + user.eventsCreated.length}</div>
                                     <div className="column">{user.points}</div>
                                 </li>
                             ))}

@@ -26,7 +26,7 @@ Based on our research, Restore's primary user demographic are young adults passi
 
 Additionally, Restore includes a local leaderboard that displays the top 10 active users in an area, fostering friendly competition. This gamified element targets Gen Z's competitive nature and desire for social recognition, further encouraging consistent participation in beach cleanups. By leveraging these motivations, Restore aims to build a strong, engaged community dedicated to maintaining the cleanliness of our beaches.
 
-<img width="1470" alt="Screenshot 2024-07-15 at 12 48 42 PM" src="https://github.com/user-attachments/assets/4782f141-59c7-4c15-a23a-e8de77b39983">
+<img width="1470" alt="Leaderboard" src="web/src/assets/leaderboard.jpg">
 
 
 
